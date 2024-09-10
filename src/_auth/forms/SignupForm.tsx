@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Loader from "@/components/shared/Loader";
 
 import { useForm } from "react-hook-form";
 import { SignupValidationSchema } from "@/lib/validation";
@@ -111,7 +112,10 @@ const SignupForm = () => {
           />
           <Button type="submit" className="shad-button_primary">
             {isLoading ? (
-              <div className="flex-center gap-2">Loading...</div>
+              <div className="flex-center gap-2">
+                <Loader />
+                Loading...
+              </div>
             ) : (
               "Create account"
             )}
