@@ -3,6 +3,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
+import { useToast } from "@/hooks/use-toast";
+
 import {
   Form,
   FormControl,
@@ -20,6 +22,7 @@ import { SignupValidationSchema } from "@/lib/validation";
 import { createUserAccount } from "@/lib/appwrite/api";
 
 const SignupForm = () => {
+  const { toast } = useToast();
   const isLoading = false;
 
   const form = useForm<z.infer<typeof SignupValidationSchema>>({
@@ -35,7 +38,11 @@ const SignupForm = () => {
   async function onSubmit(values: z.infer<typeof SignupValidationSchema>) {
     const newUser = await createUserAccount(values);
 
-    console.log(newUser);
+    if (!newUser) {
+      return toast({
+        title: "Sign up failed, please try again",
+      });
+    }
   }
 
   return (
