@@ -1,4 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 import {
   Form,
@@ -13,10 +16,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/shared/Loader";
 
-import { useForm } from "react-hook-form";
 import { SignupValidationSchema } from "@/lib/validation";
-import { z } from "zod";
-import { Link } from "react-router-dom";
+import { createUserAccount } from "@/lib/appwrite/api";
 
 const SignupForm = () => {
   const isLoading = false;
@@ -31,10 +32,10 @@ const SignupForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof SignupValidationSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof SignupValidationSchema>) {
+    const newUser = await createUserAccount(values);
+
+    console.log(newUser);
   }
 
   return (
