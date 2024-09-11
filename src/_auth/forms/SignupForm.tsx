@@ -16,9 +16,10 @@ import Loader from "@/components/shared/Loader";
 import { useForm } from "react-hook-form";
 import { SignupValidationSchema } from "@/lib/validation";
 import { z } from "zod";
+import { Link } from "react-router-dom";
 
 const SignupForm = () => {
-  const isLoading = true;
+  const isLoading = false;
 
   const form = useForm<z.infer<typeof SignupValidationSchema>>({
     resolver: zodResolver(SignupValidationSchema),
@@ -48,7 +49,7 @@ const SignupForm = () => {
           Create a new account
         </h2>
         <p className="small-medium text-light-3 md:base-regular">
-          To get started with Lifecrumbs enter your details
+          To get started with Lifecrumbs, please enter your details
         </p>
 
         <form
@@ -117,9 +118,19 @@ const SignupForm = () => {
                 Loading...
               </div>
             ) : (
-              "Create account"
+              "Sign up"
             )}
           </Button>
+
+          <p className="text-small-regular text-light-2 text-center mt-2">
+            Already have an account?
+            <Link
+              to="/sign-in"
+              className="text-primary-500 tex-small-semibold ml-1"
+            >
+              Log in
+            </Link>
+          </p>
         </form>
       </div>
     </Form>
