@@ -1,9 +1,10 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 
 import { useToast } from "@/hooks/use-toast";
+import { useUserContext } from "@/context/AuthContext";
 
 import {
   Form,
@@ -19,7 +20,6 @@ import { Button } from "@/components/ui/button";
 import Loader from "@/components/shared/Loader";
 
 import { SignupValidationSchema } from "@/lib/validation";
-// import { createUserAccount } from "@/lib/appwrite/api";
 import {
   useCreateAccountMutation,
   useSignInAccountMutation,
@@ -27,10 +27,12 @@ import {
 
 const SignupForm = () => {
   const { toast } = useToast();
+  const { checkAuthUser /*, isLoading: isUserLoading*/ } = useUserContext();
+  const navigate = useNavigate();
 
-  const { mutateAsync: createUserAccount, isLoading: isCreatingUser } =
+  const { mutateAsync: createUserAccount, isPending: isCreatingAccount } =
     useCreateAccountMutation();
-  const { mutateAsync: signInAccount, isLoading: isSigningIn } =
+  const { mutateAsync: signInAccount /*, isPending: isSigningIn*/ } =
     useSignInAccountMutation();
 
   const form = useForm<z.infer<typeof SignupValidationSchema>>({
@@ -60,6 +62,18 @@ const SignupForm = () => {
     if (!session) {
       return toast({
         title: "Sign in failed, please try again",
+      });
+    }
+
+    const isLoggedIn = await checkAuthUser();
+
+    if (isLoggedIn) {
+      form.reset();
+
+      navigate("/");
+    } else {
+      return toast({
+        title: "Sign up failed, please try again",
       });
     }
   }
@@ -139,7 +153,7 @@ const SignupForm = () => {
             )}
           />
           <Button type="submit" className="shad-button_primary">
-            {isCreatingUser ? (
+            {isCreatingAccount ? (
               <div className="flex-center gap-2">
                 <Loader />
                 Loading...
