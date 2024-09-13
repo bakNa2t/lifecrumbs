@@ -1,7 +1,135 @@
-import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+import { useToast } from "@/hooks/use-toast";
+import { useUserContext } from "@/context/AuthContext";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import Loader from "@/components/shared/Loader";
+
+import { SigninValidationSchema } from "@/lib/validation";
+import { useSignInAccountMutation } from "@/lib/react-query/queriesAndMutations";
 
 const SigninForm = () => {
-  return <div>SigninForm</div>;
+  const { toast } = useToast();
+  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
+  const navigate = useNavigate();
+
+  const { mutateAsync: signInAccount } = useSignInAccountMutation();
+
+  const form = useForm<z.infer<typeof SigninValidationSchema>>({
+    resolver: zodResolver(SigninValidationSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof SigninValidationSchema>) {
+    const session = await signInAccount({
+      email: values.email,
+      password: values.password,
+    });
+
+    if (!session) {
+      return toast({
+        title: "Sign in failed, please try again",
+      });
+    }
+
+    const isLoggedIn = await checkAuthUser();
+
+    if (isLoggedIn) {
+      form.reset();
+
+      navigate("/");
+    } else {
+      return toast({
+        title: "Sign up failed, please try again",
+      });
+    }
+  }
+
+  return (
+    <Form {...form}>
+      <div className="sm:w-420 flex-center flex-col">
+        <div className="flex items-center justify-center gap-3">
+          <img src="/assets/images/logo.png" alt="Logo" className="w-10 h-10" />
+          <span className="text-3xl font-semibold">Lifecrumbs</span>
+        </div>
+
+        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
+          Log in to your account
+        </h2>
+        <p className="small-medium text-light-3 md:base-regular">
+          Welcome back! Please enter your details
+        </p>
+
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-5 w-full mt-4"
+        >
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input type="email" className="shad-input" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input type="password" className="shad-input" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="shad-button_primary">
+            {isUserLoading ? (
+              <div className="flex-center gap-2">
+                <Loader />
+                Loading...
+              </div>
+            ) : (
+              "Sign in"
+            )}
+          </Button>
+
+          <p className="text-small-regular text-light-2 text-center mt-2">
+            Don't have an account?
+            <Link
+              to="/sign-up"
+              className="text-primary-500 tex-small-semibold ml-1"
+            >
+              Sign up
+            </Link>
+          </p>
+        </form>
+      </div>
+    </Form>
+  );
 };
 
 export default SigninForm;
