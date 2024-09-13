@@ -11,7 +11,7 @@ export async function createUserAccount(user: INewUser) {
       user.name
     );
 
-    if (!newAccount) throw new Error();
+    if (!newAccount) throw Error;
 
     const avatarUrl = avatars.getInitials(user.name);
 
@@ -32,10 +32,10 @@ export async function createUserAccount(user: INewUser) {
 
 export async function saveUserToDB(user: {
   accountId: string;
-  email: string;
   name: string;
-  imageUrl: URL;
+  email: string;
   username?: string;
+  imageUrl: URL;
 }) {
   try {
     const newUser = await databases.createDocument(
@@ -68,7 +68,7 @@ export async function getCurrentUser() {
   try {
     const currentAccount = await account.get();
 
-    if (!currentAccount) throw new Error();
+    if (!currentAccount) throw Error;
 
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId,
@@ -76,7 +76,7 @@ export async function getCurrentUser() {
       [Query.equal("accountId", currentAccount.$id)]
     );
 
-    if (!currentUser) throw new Error();
+    if (!currentUser) throw Error;
 
     return currentUser.documents[0];
   } catch (error) {
