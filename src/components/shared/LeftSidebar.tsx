@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 import { useSignOutAccountMutation } from "@/lib/react-query/queriesAndMutations";
@@ -7,6 +7,7 @@ import { sidebarLinkIcons } from "@/constants";
 import { INavLink } from "@/types";
 
 const LeftSidebar = () => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const { /*mutate: signOutAccount,*/ isSuccess } = useSignOutAccountMutation();
   const { user } = useUserContext();
@@ -43,8 +44,15 @@ const LeftSidebar = () => {
 
         <ul className="flex flex-col gap-5">
           {sidebarLinkIcons.map((link: INavLink) => {
+            const isActive = pathname === link.route;
+
             return (
-              <li className="leftsidebar-link" key={link.label}>
+              <li
+                className={`leftsidebar-link group ${
+                  isActive && "bg-primary-500"
+                }`}
+                key={link.label}
+              >
                 <NavLink
                   to={link.route}
                   className="flex items-center gap-4 p-4"
@@ -52,7 +60,9 @@ const LeftSidebar = () => {
                   <img
                     src={link.imgURL}
                     alt={link.label}
-                    className="group-hover:invert-white"
+                    className={`group-hover:invert-white ${
+                      isActive && "invert-white"
+                    }`}
                     width={24}
                     height={24}
                   />
