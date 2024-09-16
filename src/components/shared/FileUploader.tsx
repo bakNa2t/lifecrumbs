@@ -18,7 +18,18 @@ const FileUploader = () => {
       {fileUrl ? (
         <div>There is a file</div>
       ) : (
-        <div className="file_uploader-box">There is no file</div>
+        <div className="file_uploader-box">
+          <img
+            src="/assets/icons/file-upload.svg"
+            alt="file"
+            width={70}
+            height={70}
+          />
+          <h3 className="base-medium text-light-2 mb-2 mt-6">
+            Drag and drop a photo here
+          </h3>
+          <p className="text-light-4 small-regular mb-6">SVG, PNG, JPG</p>
+        </div>
       )}
     </div>
   );
