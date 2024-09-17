@@ -103,6 +103,7 @@ export async function createPost(post: INewPost) {
 
     //get url
     const fileUrl = getFilePreview(uploadedFile.$id);
+
     if (!fileUrl) {
       await deleteFile(uploadedFile.$id);
       throw Error;
@@ -151,7 +152,7 @@ export async function uploadFile(file: File) {
   }
 }
 
-export async function getFilePreview(fileId: string) {
+export function getFilePreview(fileId: string) {
   try {
     const fileUrl = storage.getFilePreview(
       appwriteConfig.storageId,
