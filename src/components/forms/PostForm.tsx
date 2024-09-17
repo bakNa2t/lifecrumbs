@@ -14,24 +14,27 @@ import {
 import { Textarea } from "../ui/textarea";
 import FileUploader from "../shared/FileUploader";
 import { Input } from "../ui/input";
+import { PostValidationSchema } from "@/lib/validation";
+import { Models } from "appwrite";
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-});
+type PostFormProps = {
+  post?: Models.Document;
+};
 
-const PostForm = ({ post }) => {
+const PostForm = ({ post }: PostFormProps) => {
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof PostValidationSchema>>({
+    resolver: zodResolver(PostValidationSchema),
     defaultValues: {
-      username: "",
+      caption: post ? post?.caption : "",
+      file: [],
+      location: post ? post?.location : "",
+      tags: post ? post.tags.join(",") : "",
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof PostValidationSchema>) {
     console.log(values);
   }
 
@@ -82,7 +85,7 @@ const PostForm = ({ post }) => {
             <FormItem>
               <FormLabel className="shard-form_label">Add location</FormLabel>
               <FormControl>
-                <Input type="text" className="shad-input" />
+                <Input type="text" className="shad-input" {...field} />
               </FormControl>
               <FormMessage className="shard-form_message" />
             </FormItem>
@@ -102,6 +105,7 @@ const PostForm = ({ post }) => {
                   type="text"
                   className="shad-input"
                   placeholder="Meal, Travel, Photography"
+                  {...field}
                 />
               </FormControl>
               <FormMessage className="shard-form_message" />
