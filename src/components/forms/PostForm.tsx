@@ -1,8 +1,10 @@
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { Models } from "appwrite";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Button } from "@/components/ui/button";
+import FileUploader from "../shared/FileUploader";
 import {
   Form,
   FormControl,
@@ -12,17 +14,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "../ui/textarea";
-import FileUploader from "../shared/FileUploader";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import { PostValidationSchema } from "@/lib/validation";
-import { Models } from "appwrite";
+import { useToast } from "@/hooks/use-toast";
+import { useUserContext } from "@/context/AuthContext";
+import { useCreatePostMutation } from "@/lib/react-query/queriesAndMutations";
 
 type PostFormProps = {
   post?: Models.Document;
 };
 
 const PostForm = ({ post }: PostFormProps) => {
-  // 1. Define your form.
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const { user } = useUserContext();
+  const { mutateAsync: createPost /*, isPending: isLoadingCreate*/ } =
+    useCreatePostMutation();
+
   const form = useForm<z.infer<typeof PostValidationSchema>>({
     resolver: zodResolver(PostValidationSchema),
     defaultValues: {
@@ -33,9 +42,19 @@ const PostForm = ({ post }: PostFormProps) => {
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof PostValidationSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof PostValidationSchema>) {
+    const newPost = await createPost({
+      ...values,
+      userId: user.id,
+    });
+
+    if (!newPost) {
+      toast({
+        title: "Create post failed, try again",
+      });
+    }
+
+    navigate("/");
   }
 
   return (
@@ -117,11 +136,12 @@ const PostForm = ({ post }: PostFormProps) => {
           <Button type="button" className="shad-button_dark_4">
             Cancel
           </Button>
+
           <Button
             type="submit"
-            className="shad-button_primary whitespace-nowrap"
+            className="shad-button_primary whitespace-nowrap active:translate-y-[2px]"
           >
-            Submit
+            Create Post
           </Button>
         </div>
       </form>
