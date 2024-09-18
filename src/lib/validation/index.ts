@@ -19,7 +19,6 @@ export const SigninValidationSchema = z.object({
 });
 
 export const PostValidationSchema = z.object({
-  email: z.string().email(),
   caption: z.string().min(5).max(2200),
   file: z.custom<File[]>(),
   location: z.string().min(2).max(100),
