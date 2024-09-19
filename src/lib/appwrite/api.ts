@@ -2,6 +2,8 @@ import { ID, ImageGravity, Query } from "appwrite";
 import { INewPost, INewUser } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
 
+//USERS authentication and account creation
+
 export async function createUserAccount(user: INewUser) {
   try {
     const newAccount = await account.create(
@@ -93,6 +95,8 @@ export async function signOutAccount() {
     console.log(error);
   }
 }
+
+//POSTS management
 
 export async function createPost(post: INewPost) {
   try {
@@ -226,6 +230,22 @@ export async function savePost(postId: string, userId: string) {
     if (!updatedPost) throw Error;
 
     return updatedPost;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteSavedPost(savedRecordId: string) {
+  try {
+    const statusCode = databases.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.savesCollectionId,
+      savedRecordId
+    );
+
+    if (!statusCode) throw Error;
+
+    return { status: "ok" };
   } catch (error) {
     console.log(error);
   }
