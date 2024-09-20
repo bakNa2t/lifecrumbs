@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { Models } from "appwrite";
-import { useState } from "react";
 
 import {
   useDeleteSavedPostMutation,
@@ -26,7 +26,23 @@ const PostStats = ({ post, userId }: PostStatProps) => {
 
   const { data: currentUser } = useUserContext();
 
-  const handleLikePost = () => {};
+  const handleLikePost = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    let newLikes = [...likes];
+
+    const hasLiked = newLikes.includes(userId);
+
+    if (hasLiked) {
+      newLikes = newLikes.filter((id) => id !== userId);
+    } else {
+      newLikes.push(userId);
+    }
+
+    setLikes(newLikes);
+
+    likePost({ postId: post.$id, likesArray: newLikes });
+  };
 
   const handleSavePost = () => {};
 
