@@ -1,6 +1,15 @@
+import { useParams } from "react-router-dom";
+
 import PostForm from "@/components/forms/PostForm";
+import { useGetPostByIdQuery } from "@/lib/react-query/queriesAndMutations";
+import { Loader } from "lucide-react";
 
 const EditPost = () => {
+  const { id } = useParams();
+  const { data: post, isPending } = useGetPostByIdQuery(id || "");
+
+  if (isPending) return <Loader />;
+
   return (
     <div className="flex flex-1">
       <div className="common-container">
@@ -9,7 +18,7 @@ const EditPost = () => {
           <h2 className="h3-bold md:h2-bold text-left w-full">Edit Post</h2>
         </div>
 
-        <PostForm />
+        <PostForm post={post} action="Edit" />
       </div>
     </div>
   );
