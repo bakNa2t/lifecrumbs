@@ -3,10 +3,10 @@ import { Models } from "appwrite";
 
 import {
   useDeleteSavedPostMutation,
+  useGetCurrentUserQuery,
   useLikePostMutation,
   useSavePostMutation,
 } from "@/lib/react-query/queriesAndMutations";
-import { useUserContext } from "@/context/AuthContext";
 import { checkIsLiked } from "@/lib/utils";
 
 type PostStatProps = {
@@ -24,7 +24,7 @@ const PostStats = ({ post, userId }: PostStatProps) => {
   const { mutate: savePost } = useSavePostMutation();
   const { mutate: deleteSavedPost } = useDeleteSavedPostMutation();
 
-  const { data: currentUser } = useUserContext();
+  const { data: currentUser } = useGetCurrentUserQuery();
 
   const handleLikePost = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -44,7 +44,21 @@ const PostStats = ({ post, userId }: PostStatProps) => {
     likePost({ postId: post.$id, likesArray: newLikes });
   };
 
-  const handleSavePost = () => {};
+  const handleSavePost = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    const savedPostRecord = currentUser?.save.find(
+      (record: Models.Document) => record.$id === post.$id
+    );
+
+    if (savedPostRecord) {
+      setIsSaved(false);
+      deleteSavedPost(savedPostRecord.$id);
+    } else {
+      savePost({ postId: post.$id, userId });
+      setIsSaved(true);
+    }
+  };
 
   return (
     <div className="flex justify-between items-start z-20">
