@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Models } from "appwrite";
 
 import {
@@ -8,6 +8,7 @@ import {
   useSavePostMutation,
 } from "@/lib/react-query/queriesAndMutations";
 import { checkIsLiked } from "@/lib/utils";
+import Loader from "./Loader";
 
 type PostStatProps = {
   post: Models.Document;
@@ -21,10 +22,19 @@ const PostStats = ({ post, userId }: PostStatProps) => {
   const [isSaved, setIsSaved] = useState(false);
 
   const { mutate: likePost } = useLikePostMutation();
-  const { mutate: savePost } = useSavePostMutation();
-  const { mutate: deleteSavedPost } = useDeleteSavedPostMutation();
+  const { mutate: savePost, isPending: isSavingPost } = useSavePostMutation();
+  const { mutate: deleteSavedPost, isPending: isDeletingSavedPost } =
+    useDeleteSavedPostMutation();
 
   const { data: currentUser } = useGetCurrentUserQuery();
+
+  const savedPostRecord = currentUser?.save.find(
+    (record: Models.Document) => record.post.$id === post.$id
+  );
+
+  useEffect(() => {
+    setIsSaved(!!savedPostRecord);
+  }, [savedPostRecord]);
 
   const handleLikePost = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -46,10 +56,6 @@ const PostStats = ({ post, userId }: PostStatProps) => {
 
   const handleSavePost = (e: React.MouseEvent) => {
     e.stopPropagation();
-
-    const savedPostRecord = currentUser?.save.find(
-      (record: Models.Document) => record.$id === post.$id
-    );
 
     if (savedPostRecord) {
       setIsSaved(false);
@@ -79,18 +85,22 @@ const PostStats = ({ post, userId }: PostStatProps) => {
       </div>
 
       <div className="flex gap-2">
-        <img
-          src={
-            isSaved
-              ? "assets/icons/savemark-filled.svg"
-              : "assets/icons/sidebar/savemark.svg"
-          }
-          alt="savemark"
-          width={20}
-          height={20}
-          onClick={handleSavePost}
-          className="cursor-pointer"
-        />
+        {isSavingPost || isDeletingSavedPost ? (
+          <Loader />
+        ) : (
+          <img
+            src={
+              isSaved
+                ? "assets/icons/savemark-filled.svg"
+                : "assets/icons/sidebar/savemark.svg"
+            }
+            alt="savemark"
+            width={20}
+            height={20}
+            onClick={handleSavePost}
+            className="cursor-pointer"
+          />
+        )}
       </div>
     </div>
   );
