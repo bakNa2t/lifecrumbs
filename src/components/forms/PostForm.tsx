@@ -33,9 +33,9 @@ const PostForm = ({ post, action }: PostFormProps) => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user } = useUserContext();
-  const { mutateAsync: createPost /*, isPending: isLoadingCreate*/ } =
+  const { mutateAsync: createPost, isPending: isLoadingCreate } =
     useCreatePostMutation();
-  const { mutateAsync: updatePost /*, isPending: isLoadingUpdate*/ } =
+  const { mutateAsync: updatePost, isPending: isLoadingUpdate } =
     useUpdatePostMutation();
 
   const form = useForm<z.infer<typeof PostValidationSchema>>({
@@ -161,8 +161,10 @@ const PostForm = ({ post, action }: PostFormProps) => {
           <Button
             type="submit"
             className="shad-button_primary whitespace-nowrap active:translate-y-[2px]"
+            disabled={isLoadingCreate || isLoadingUpdate}
           >
-            Create Post
+            {isLoadingCreate || (isLoadingUpdate && "Loading...")}
+            {action} Post
           </Button>
         </div>
       </form>
