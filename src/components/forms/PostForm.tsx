@@ -19,18 +19,24 @@ import { Button } from "../ui/button";
 import { PostValidationSchema } from "@/lib/validation";
 import { useToast } from "@/hooks/use-toast";
 import { useUserContext } from "@/context/AuthContext";
-import { useCreatePostMutation } from "@/lib/react-query/queriesAndMutations";
+import {
+  useCreatePostMutation,
+  useUpdatePostMutation,
+} from "@/lib/react-query/queriesAndMutations";
 
 type PostFormProps = {
   post?: Models.Document;
+  action: "Create" | "Edit";
 };
 
-const PostForm = ({ post }: PostFormProps) => {
+const PostForm = ({ post, action }: PostFormProps) => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user } = useUserContext();
   const { mutateAsync: createPost /*, isPending: isLoadingCreate*/ } =
     useCreatePostMutation();
+  const { mutateAsync: updatePost /*, isPending: isLoadingUpdate*/ } =
+    useUpdatePostMutation();
 
   const form = useForm<z.infer<typeof PostValidationSchema>>({
     resolver: zodResolver(PostValidationSchema),
@@ -43,6 +49,21 @@ const PostForm = ({ post }: PostFormProps) => {
   });
 
   async function onSubmit(values: z.infer<typeof PostValidationSchema>) {
+    if (post && action === "Edit") {
+      const updatedPost = await updatePost({
+        ...values,
+        postId: post.$id,
+        imageId: post?.imageId,
+        imageUrl: post?.imageUrl,
+      });
+
+      if (!updatedPost) {
+        toast({ title: "Update post failed, try again" });
+      }
+
+      return navigate(`/posts/${post.$id}`);
+    }
+
     const newPost = await createPost({
       ...values,
       userId: user.id,
