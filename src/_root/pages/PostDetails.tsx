@@ -1,6 +1,9 @@
-import Loader from "@/components/shared/Loader";
-import { useGetPostByIdQuery } from "@/lib/react-query/queriesAndMutations";
 import { Link, useParams } from "react-router-dom";
+
+import Loader from "@/components/shared/Loader";
+
+import { useGetPostByIdQuery } from "@/lib/react-query/queriesAndMutations";
+import { formatDate } from "@/lib/utils";
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -12,8 +15,10 @@ const PostDetails = () => {
         <Loader />
       ) : (
         <div className="post_details-card">
-          <div className="flex items-center gap-3">
-            <Link to={`/profile/${post.creator.$id}`}>
+          <img src={post?.imageUrl} alt="post" className="post_details-img" />
+
+          <div className="post_details-info">
+            <Link to={`/profile/${post?.creator.$id}`}>
               <img
                 src={
                   post?.creator?.imageUrl || "assets/icons/profile-default.svg"
@@ -25,15 +30,15 @@ const PostDetails = () => {
 
             <div className="flex flex-col">
               <p className="base-medium lg:body-bold text-light-1">
-                {post.creator.name}
+                {post?.creator.name}
               </p>
               <div className="flex-center gap-2 text-light-3">
                 <p className="subtle-semibold lg:small-regular">
-                  {formatDate(post.$createdAt)}
+                  {formatDate(post?.$createdAt ?? "")}
                 </p>
                 •
                 <p className="subtle-semibold lg:small-regular">
-                  {post.location}
+                  {post?.location}
                 </p>
               </div>
             </div>
