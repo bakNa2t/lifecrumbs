@@ -51,7 +51,7 @@ const PostDetails = () => {
                 </div>
               </Link>
 
-              <div className="flex-center gap-5">
+              <div className="flex-center gap-3">
                 <Link
                   to={`/update-post/${post?.$id}`}
                   className={`${user.id !== post?.creator.$id && "hidden"}`}
@@ -64,15 +64,33 @@ const PostDetails = () => {
                   />
                 </Link>
 
-                <Button>
+                <Button
+                  variant={"ghost"}
+                  className={`ghost_details-delete_btn p-0 ${
+                    user.id !== post?.creator.$id && "hidden"
+                  }`}
+                >
                   <img
                     src="/assets/icons/delete-post.svg"
                     alt="delete-post"
-                    width={26}
-                    height={26}
+                    width={27}
+                    height={27}
                   />
                 </Button>
               </div>
+            </div>
+
+            <hr className="border w-full border-dark-4/80" />
+
+            <div className="small-medium lg:base-medium py-5">
+              <p>{post?.caption}</p>
+              <ul className="flex gap-1 mt-2">
+                {post?.tags.map((tag: string) => (
+                  <li className="text-light-3" key={tag}>
+                    #{tag}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
