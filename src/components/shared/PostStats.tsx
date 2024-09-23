@@ -11,12 +11,12 @@ import { checkIsLiked } from "@/lib/utils";
 import Loader from "./Loader";
 
 type PostStatProps = {
-  post: Models.Document;
+  post?: Models.Document;
   userId: string;
 };
 
 const PostStats = ({ post, userId }: PostStatProps) => {
-  const likesList = post.likes.map((user: Models.Document) => user.$id);
+  const likesList = post?.likes.map((user: Models.Document) => user.$id);
 
   const [likes, setLikes] = useState(likesList);
   const [isSaved, setIsSaved] = useState(false);
@@ -29,7 +29,7 @@ const PostStats = ({ post, userId }: PostStatProps) => {
   const { data: currentUser } = useGetCurrentUserQuery();
 
   const savedPostRecord = currentUser?.save.find(
-    (record: Models.Document) => record.post.$id === post.$id
+    (record: Models.Document) => record.post.$id === post?.$id
   );
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const PostStats = ({ post, userId }: PostStatProps) => {
 
     setLikes(newLikes);
 
-    likePost({ postId: post.$id, likesArray: newLikes });
+    likePost({ postId: post?.$id || "", likesArray: newLikes });
   };
 
   const handleSavePost = (e: React.MouseEvent) => {
@@ -61,7 +61,7 @@ const PostStats = ({ post, userId }: PostStatProps) => {
       setIsSaved(false);
       deleteSavedPost(savedPostRecord.$id);
     } else {
-      savePost({ postId: post.$id, userId });
+      savePost({ postId: post?.$id || "", userId });
       setIsSaved(true);
     }
   };
@@ -72,8 +72,8 @@ const PostStats = ({ post, userId }: PostStatProps) => {
         <img
           src={
             checkIsLiked(likes, userId)
-              ? "assets/icons/like-heart-filled.svg"
-              : "assets/icons/like-heart-empty.svg"
+              ? "/assets/icons/like-heart-filled.svg"
+              : "/assets/icons/like-heart-empty.svg"
           }
           alt="heart"
           width={22}
@@ -91,8 +91,8 @@ const PostStats = ({ post, userId }: PostStatProps) => {
           <img
             src={
               isSaved
-                ? "assets/icons/savemark-filled.svg"
-                : "assets/icons/sidebar/savemark.svg"
+                ? "/assets/icons/savemark-filled.svg"
+                : "/assets/icons/sidebar/savemark.svg"
             }
             alt="savemark"
             width={20}

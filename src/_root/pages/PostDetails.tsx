@@ -6,6 +6,7 @@ import { useUserContext } from "@/context/AuthContext";
 import { useGetPostByIdQuery } from "@/lib/react-query/queriesAndMutations";
 import { formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import PostStats from "@/components/shared/PostStats";
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -82,7 +83,7 @@ const PostDetails = () => {
 
             <hr className="border w-full border-dark-4/80" />
 
-            <div className="small-medium lg:base-medium py-5">
+            <div className="flex flex-col flex-1 w-full small-medium lg:base-regular">
               <p>{post?.caption}</p>
               <ul className="flex gap-1 mt-2">
                 {post?.tags.map((tag: string) => (
@@ -91,6 +92,10 @@ const PostDetails = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+
+            <div className="w-full">
+              <PostStats post={post} userId={user.id} />
             </div>
           </div>
         </div>
