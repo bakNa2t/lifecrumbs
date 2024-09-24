@@ -15,6 +15,7 @@ import {
   getRecentPosts,
   likePost,
   savePost,
+  searchPosts,
   signInAccount,
   signOutAccount,
   updatePost,
@@ -182,5 +183,13 @@ export const useGetPostsQuery = () => {
 
       return lastId;
     },
+  });
+};
+
+export const useSearchPostsQuery = (searchTerm: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_SEARCH_POSTS],
+    queryFn: () => searchPosts(searchTerm),
+    enabled: !!searchTerm,
   });
 };
