@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 import { Input } from "@/components/ui/input";
@@ -13,14 +13,18 @@ import {
 import useDebounce from "@/hooks/useDebounce";
 
 const Explore = () => {
-  const { ref } = useInView();
+  const { ref, inView } = useInView();
   const [searchValue, setSearchValue] = useState("");
 
-  const { data: posts, fetchNextPage, hasNexPage } = useGetPostsQuery();
+  const { data: posts, fetchNextPage, hasNextPage } = useGetPostsQuery();
 
   const debouncedSearchValue = useDebounce(searchValue, 500);
   const { data: searchedPosts, isFetching: isSearchFetching } =
     useSearchPostsQuery(debouncedSearchValue);
+
+  useEffect(() => {
+    if (inView && !searchValue) fetchNextPage();
+  }, [inView, searchValue]);
 
   if (!posts) {
     return (
@@ -33,7 +37,7 @@ const Explore = () => {
   const shouldDisplaySearchResults = searchValue !== "";
   const shouldDisplayPosts =
     !shouldDisplaySearchResults &&
-    posts?.pages.every((item) => item.documents.length === 0);
+    posts?.pages.every((item) => item?.documents.length === 0);
 
   return (
     <div className="explore-container">
