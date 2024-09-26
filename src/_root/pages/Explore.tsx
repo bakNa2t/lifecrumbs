@@ -22,6 +22,8 @@ const Explore = () => {
   const { data: searchedPosts, isFetching: isSearchFetching } =
     useSearchPostsQuery(debouncedSearchValue);
 
+  console.log(searchedPosts);
+
   useEffect(() => {
     if (inView && !searchValue) fetchNextPage();
   }, [inView, searchValue]);
@@ -85,9 +87,12 @@ const Explore = () => {
             No posts found
           </p>
         ) : (
-          posts.pages.map((item, index) => (
-            <GridPostList key={`page-${index}`} posts={item.documents} />
-          ))
+          posts.pages.map(
+            (item, index) =>
+              item && (
+                <GridPostList key={`page-${index}`} posts={item.documents} />
+              )
+          )
         )}
       </div>
 
