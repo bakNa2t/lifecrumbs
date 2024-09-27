@@ -73,11 +73,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       cookieFallBack === "[]" ||
       cookieFallBack === null ||
       cookieFallBack === undefined
-    )
+    ) {
       navigate("/sign-in");
+    }
 
     checkAuthUser();
-  }, [navigate]);
+  }, []);
 
   const value = {
     user,
