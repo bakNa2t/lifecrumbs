@@ -70,8 +70,6 @@ export async function getAccount() {
   try {
     const currentAccount = await account.get();
 
-    console.log(currentAccount);
-
     return currentAccount;
   } catch (error) {
     console.log(error);
@@ -80,7 +78,6 @@ export async function getAccount() {
 
 export async function getCurrentUser() {
   try {
-    // const currentAccount = await account.get();
     const currentAccount = await getAccount();
 
     if (!currentAccount) throw Error;
@@ -382,6 +379,31 @@ export async function searchPosts(searchTerm: string) {
     if (!posts) throw Error;
 
     return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//Get USERS to display on app
+
+export async function getUsers(limit?: number) {
+  //eslint-disable-next-line
+  const queries: any[] = [Query.orderDesc("$createdAt")];
+
+  if (limit) {
+    queries.push(Query.limit(limit));
+  }
+
+  try {
+    const users = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      queries
+    );
+
+    if (!users) throw Error;
+
+    return users;
   } catch (error) {
     console.log(error);
   }
