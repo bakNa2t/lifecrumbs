@@ -82,8 +82,8 @@ const PostDetails = () => {
                   <img
                     src="/assets/icons/delete-post.svg"
                     alt="delete-post"
-                    width={27}
-                    height={27}
+                    width={24}
+                    height={24}
                   />
                 </Button>
               </div>
