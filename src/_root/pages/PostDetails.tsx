@@ -45,7 +45,15 @@ const PostDetails = () => {
                       {formatDate(post?.$createdAt ?? "")}
                     </p>
                     •
-                    <p className="subtle-semibold lg:small-regular">
+                    <p className="flex gap-1 subtle-semibold lg:small-regular">
+                      {post?.location && (
+                        <img
+                          src="/assets/icons/map-pin.svg"
+                          alt="location"
+                          width={14}
+                          height={14}
+                        />
+                      )}
                       {post?.location}
                     </p>
                   </div>

@@ -38,12 +38,14 @@ const PostCard = ({ post }: PostCardProps) => {
               </p>
               •
               <p className="flex gap-1 subtle-semibold lg:small-regular">
-                <img
-                  src="/assets/icons/map-pin.svg"
-                  alt="location"
-                  width={14}
-                  height={14}
-                />
+                {post.location && (
+                  <img
+                    src="/assets/icons/map-pin.svg"
+                    alt="location"
+                    width={14}
+                    height={14}
+                  />
+                )}
                 {post.location}
               </p>
             </div>
