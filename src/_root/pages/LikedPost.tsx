@@ -1,4 +1,6 @@
 import Loader from "@/components/shared/Loader";
+import GridPostList from "@/components/shared/GridPostList";
+
 import { useGetCurrentUserQuery } from "@/lib/react-query/queriesAndMutations";
 
 const LikedPost = () => {
@@ -16,6 +18,8 @@ const LikedPost = () => {
       {currentUser.liked.length === 0 && (
         <p className="text-light-4">No liked posts</p>
       )}
+
+      <GridPostList posts={currentUser.liked} showStats={false} />
     </>
   );
 };
