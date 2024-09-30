@@ -1,9 +1,10 @@
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import Loader from "@/components/shared/Loader";
 
 import { useUserContext } from "@/context/AuthContext";
 import { useGetUserByIdQuery } from "@/lib/react-query/queriesAndMutations";
+import { Button } from "@/components/ui/button";
 
 interface StatBlockProp {
   value: string | number;
@@ -50,6 +51,49 @@ const Profile = () => {
               <p className="small-regular md:body-medium text-light-3 text-center xl:text-left">
                 @{currentUser.username}
               </p>
+            </div>
+
+            <div className="flex gap-8 mt-10 items-center xl:justify-start flex-wrap z-20">
+              <StatBlock value={currentUser.posts.length} label="Posts" />
+              <StatBlock value={0} label="Followers" />
+              <StatBlock value={0} label="Following" />
+            </div>
+
+            <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
+              {currentUser.bio !== null ? (
+                currentUser.bio
+              ) : (
+                <p className="small-regular md:body-medium text-light-3 text-center xl:text-left opacity-50">
+                  Bio info hasn't added yet
+                </p>
+              )}
+            </p>
+          </div>
+
+          <div className="flex justify-center gap-4">
+            <div className={`${user.id !== currentUser.$id && "hidden"}`}>
+              <Link
+                to={`/update-profile/${currentUser.$id}`}
+                className={`h-12 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg ${
+                  user.id !== currentUser.$id && "hidden"
+                }`}
+              >
+                <img
+                  src="/assets/icons/edit.svg"
+                  alt="edit"
+                  width={20}
+                  height={20}
+                />
+                <p className="flex whitespace-nowrap small-medium">
+                  Edit profile
+                </p>
+              </Link>
+            </div>
+
+            <div className={`${user.id === id && "hidden"}`}>
+              <Button type="button" className="shard-button_primary px-8">
+                Follow
+              </Button>
             </div>
           </div>
         </div>
