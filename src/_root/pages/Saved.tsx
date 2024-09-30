@@ -1,5 +1,9 @@
-import { useGetCurrentUserQuery } from "@/lib/react-query/queriesAndMutations";
 import { Models } from "appwrite";
+
+import Loader from "@/components/shared/Loader";
+import GridPostList from "@/components/shared/GridPostList";
+
+import { useGetCurrentUserQuery } from "@/lib/react-query/queriesAndMutations";
 
 const Saved = () => {
   const { data: currentUser } = useGetCurrentUserQuery();
@@ -26,9 +30,17 @@ const Saved = () => {
         <h2 className="h3-bold md:h2-bold text-left w-full">Saved Posts</h2>
       </div>
 
-      <ul className="w-full flex justify-center max-w-5xl  gap-8">
-        {savePosts}
-      </ul>
+      {!currentUser ? (
+        <Loader />
+      ) : (
+        <ul className="w-full flex justify-center max-w-5xl  gap-8">
+          {savePosts.length === 0 ? (
+            <p className="text-light-4">Posts not found</p>
+          ) : (
+            <GridPostList posts={savePosts} showStats={false} />
+          )}
+        </ul>
+      )}
     </div>
   );
 };
