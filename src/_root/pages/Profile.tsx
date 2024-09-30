@@ -99,7 +99,38 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="flex justify-center gap-4"></div>
+      {currentUser.$id === user.id && (
+        <div className="flex max-w-5xl w-full">
+          <Link
+            to={`/profile/${id}`}
+            className={`profile-tab rounded-l-lg ${
+              pathname === `/profile/${id}` && "!bg-dark-3"
+            }`}
+          >
+            <img
+              src="/assets/icons/post-images.svg"
+              alt="post"
+              width={20}
+              height={20}
+            />
+            Posts
+          </Link>
+          <Link
+            to={`/profile/${id}/liked-posts`}
+            className={`profile-tab rounded-r-lg ${
+              pathname === `/profile/${id}/liked-posts` && "!bg-dark-3"
+            }`}
+          >
+            <img
+              src="/assets/icons/like-heart-empty.svg"
+              alt="like"
+              width={22}
+              height={22}
+            />
+            Liked Posts
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
