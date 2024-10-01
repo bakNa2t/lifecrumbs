@@ -30,6 +30,17 @@ const ProfileUploader = ({ fieldChange, mediaUrl }: ProfileUploaderProps) => {
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} className="cursor-pointer" />
+
+      <div className="cursor-pointer flex-center gap-4">
+        <img
+          src={fileUrl || "/assets/icons/profile-default.svg"}
+          alt="image"
+          className="w-24 h-24 rounded-full object-cover object-top "
+        />
+        <p className="text-primary-500 small-regular md:base-semibold">
+          Change profile photo
+        </p>
+      </div>
     </div>
   );
 };
