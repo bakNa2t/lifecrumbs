@@ -1,10 +1,19 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 
 import Loader from "@/components/shared/Loader";
+import LikedPost from "./LikedPost";
+import GridPostList from "@/components/shared/GridPostList";
+import { Button } from "@/components/ui/button";
 
 import { useUserContext } from "@/context/AuthContext";
 import { useGetUserByIdQuery } from "@/lib/react-query/queriesAndMutations";
-import { Button } from "@/components/ui/button";
 
 interface StatBlockProp {
   value: string | number;
@@ -34,6 +43,8 @@ const Profile = () => {
       </div>
     );
 
+  console.log(pathname);
+
   return (
     <div className="profile-container">
       <div className="profile-inner_container">
@@ -59,7 +70,7 @@ const Profile = () => {
               <StatBlock value={0} label="Following" />
             </div>
 
-            <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
+            <div className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
               {currentUser.bio !== null ? (
                 currentUser.bio
               ) : (
@@ -67,7 +78,7 @@ const Profile = () => {
                   Bio info hasn't added yet
                 </p>
               )}
-            </p>
+            </div>
           </div>
 
           <div className="flex justify-center gap-4">
@@ -131,6 +142,17 @@ const Profile = () => {
           </Link>
         </div>
       )}
+
+      <Routes>
+        <Route
+          index
+          element={<GridPostList posts={currentUser.posts} showUser={false} />}
+        />
+        {currentUser.$id === user.id && (
+          <Route path="/liked-posts" element={<LikedPost />} />
+        )}
+      </Routes>
+      <Outlet />
     </div>
   );
 };
