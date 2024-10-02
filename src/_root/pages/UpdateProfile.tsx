@@ -42,7 +42,7 @@ const UpdateProfile = () => {
   });
 
   const { data: currentUser } = useGetUserByIdQuery(id || "");
-  const { mutateAsync: updateUser, isLoading: isLoadingUpdate } =
+  const { mutateAsync: updateUser, isPending: isLoadingUpdate } =
     useUpdateUserMutation();
 
   if (!currentUser) {
@@ -52,6 +52,34 @@ const UpdateProfile = () => {
       </div>
     );
   }
+
+  const handleUpdateProfile = async (
+    value: z.infer<typeof ProfileValidatinSchema>
+  ) => {
+    const updatedUser = await updateUser({
+      userId: currentUser.$id,
+      name: value.name,
+      bio: value.bio,
+      file: value.file,
+      imageUrl: currentUser.imageUrl,
+      imageId: currentUser.imageId,
+    });
+
+    if (!updatedUser) {
+      toast({
+        title: "Update profile failed, please try again",
+      });
+    }
+
+    setUser({
+      ...user,
+      name: updatedUser?.name,
+      bio: updatedUser?.bio,
+      imageUrl: updatedUser?.imageUrl,
+    });
+
+    return navigate(`/profile/${id}`);
+  };
 
   return (
     <div className="flex flex-1">
@@ -63,7 +91,7 @@ const UpdateProfile = () => {
 
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(() => {})}
+            onSubmit={form.handleSubmit(handleUpdateProfile)}
             className="flex flex-col gap-9 w-full max-w-5xl"
           >
             <FormField
