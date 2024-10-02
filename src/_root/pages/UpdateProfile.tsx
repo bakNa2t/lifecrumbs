@@ -191,7 +191,9 @@ const UpdateProfile = () => {
               <Button
                 type="submit"
                 className="shad-button_primary whitespace-nowrap active:translate-y-[2px]"
+                disabled={isLoadingUpdate}
               >
+                {isLoadingUpdate && <Loader />}
                 Update Profile
               </Button>
             </div>
