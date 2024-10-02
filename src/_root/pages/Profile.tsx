@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 
 import Loader from "@/components/shared/Loader";
-import LikedPost from "./LikedPost";
 import GridPostList from "@/components/shared/GridPostList";
+import { LikedPost } from "@/_root/pages";
 import { Button } from "@/components/ui/button";
 
 import { useUserContext } from "@/context/AuthContext";
@@ -42,8 +42,6 @@ const Profile = () => {
         <Loader />
       </div>
     );
-
-  console.log(pathname);
 
   return (
     <div className="profile-container">
@@ -115,7 +113,7 @@ const Profile = () => {
           <Link
             to={`/profile/${id}`}
             className={`profile-tab rounded-l-lg ${
-              pathname === `/profile/${id}` && "!bg-dark-3"
+              pathname === `/profile/${id}/*` && "!bg-dark-3"
             }`}
           >
             <img
@@ -149,7 +147,7 @@ const Profile = () => {
           element={<GridPostList posts={currentUser.posts} showUser={false} />}
         />
         {currentUser.$id === user.id && (
-          <Route path="/liked-posts" element={<LikedPost />} />
+          <Route path="/liked-posts/" element={<LikedPost />} />
         )}
       </Routes>
       <Outlet />
