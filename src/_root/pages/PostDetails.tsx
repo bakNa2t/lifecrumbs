@@ -1,17 +1,36 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import Loader from "@/components/shared/Loader";
-
-import { useUserContext } from "@/context/AuthContext";
-import { useGetPostByIdQuery } from "@/lib/react-query/queriesAndMutations";
-import { formatDate } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import PostStats from "@/components/shared/PostStats";
+import { Button } from "@/components/ui/button";
+
+import { formatDate } from "@/lib/utils";
+import { useUserContext } from "@/context/AuthContext";
+import {
+  useDeletePostMutation,
+  useGetPostByIdQuery,
+  useGetUserPostsQuery,
+} from "@/lib/react-query/queriesAndMutations";
 
 const PostDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
-  const { data: post, isPending } = useGetPostByIdQuery(id || "");
   const { user } = useUserContext();
+
+  const { data: post, isPending } = useGetPostByIdQuery(id || "");
+  const { data: userPosts, isPending: isUserPostLoading } =
+    useGetUserPostsQuery(post?.creator.$id);
+
+  const { mutate: deletePost } = useDeletePostMutation();
+
+  const handleDeletePost = () => {
+    deletePost({
+      postId: id,
+      imageId: post?.imageId,
+    });
+
+    return navigate(-1);
+  };
 
   return (
     <div className="post_details-container">
@@ -78,6 +97,7 @@ const PostDetails = () => {
                   className={`ghost_details-delete_btn p-0 ${
                     user.id !== post?.creator.$id && "hidden"
                   }`}
+                  onClick={handleDeletePost}
                 >
                   <img
                     src="/assets/icons/delete-post.svg"
