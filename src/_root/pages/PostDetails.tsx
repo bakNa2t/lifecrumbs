@@ -34,6 +34,17 @@ const PostDetails = () => {
 
   return (
     <div className="post_details-container">
+      <div className="hidden md:flex max-w-5xl w-full">
+        <Button
+          className="shad-button_ghost"
+          variant="ghost"
+          onClick={() => navigate(-1)}
+        >
+          <img src="/assets/icons/back.svg" alt="back" width={28} height={28} />
+          <p className="small-medium lg:base-medium">Back</p>
+        </Button>
+      </div>
+
       {isPending ? (
         <Loader />
       ) : (
