@@ -14,6 +14,7 @@ import {
   getPostById,
   getRecentPosts,
   getUserById,
+  getUserPosts,
   getUsers,
   likePost,
   savePost,
@@ -138,6 +139,14 @@ export const useGetCurrentUserQuery = () => {
   });
 };
 
+export const useGetUserPostsQuery = (userId?: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USER_POSTS, userId],
+    queryFn: () => getUserPosts(userId),
+    enabled: !!userId,
+  });
+};
+
 export const useGetPostByIdQuery = (postId: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_POST_BY_ID, postId],
@@ -176,8 +185,11 @@ export const useDeletePostMutation = () => {
 export const useGetPostsQuery = () => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
-    queryFn: getInfinitePosts,
-    getNextPageParam: (lastPage) => {
+    // eslint-disable-next-line
+    queryFn: getInfinitePosts as any,
+    initialPageParam: 0,
+    // eslint-disable-next-line
+    getNextPageParam: (lastPage: any) => {
       if (lastPage && lastPage.documents.length === 0) {
         return null;
       }
