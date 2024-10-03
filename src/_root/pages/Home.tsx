@@ -19,7 +19,7 @@ const Home = () => {
   const {
     data: creators,
     isPending: isUserLoading,
-    // isError: isErrorCreators,
+    isError: isErrorCreators,
   } = useGetUsersQuery(5);
 
   return (
@@ -41,6 +41,14 @@ const Home = () => {
 
       <div className="home-creators">
         <h3 className="h3-bold text-light-1">Recent Creators</h3>
+
+        {isErrorCreators && (
+          <div className="flex-center w-full h-full">
+            <p className="small-regular text-light-1">
+              🤢Happened an error, please try again
+            </p>
+          </div>
+        )}
 
         {isUserLoading && !creators ? (
           <Loader />
