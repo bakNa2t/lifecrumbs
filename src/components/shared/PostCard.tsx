@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Models } from "appwrite";
 
 import PostStats from "./PostStats";
+
 import { formatDate } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
 
@@ -61,7 +62,13 @@ const PostCard = ({ post }: PostCardProps) => {
       </div>
 
       <Link to={`/posts/${post.$id}`}>
-        <div className="small-medium lg:base-medium py-5">
+        <img
+          src={post.imageUrl || "assets/images/post-default.svg"}
+          alt="post image"
+          className="post-card_img mt-5"
+        />
+
+        <div className="small-medium lg:base-medium pt-2 pb-5">
           <p>{post.caption}</p>
           <ul className="flex gap-1 mt-2">
             {post.tags.map((tag: string) => (
@@ -71,12 +78,6 @@ const PostCard = ({ post }: PostCardProps) => {
             ))}
           </ul>
         </div>
-
-        <img
-          src={post.imageUrl || "assets/images/post-default.svg"}
-          alt="post image"
-          className="post-card_img"
-        />
       </Link>
 
       <PostStats post={post} userId={user.id} />

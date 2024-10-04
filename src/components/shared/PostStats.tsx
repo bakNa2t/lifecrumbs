@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Models } from "appwrite";
 
+import Loader from "./Loader";
+
 import {
   useDeleteSavedPostMutation,
   useGetCurrentUserQuery,
@@ -8,7 +10,6 @@ import {
   useSavePostMutation,
 } from "@/lib/react-query/queriesAndMutations";
 import { checkIsLiked } from "@/lib/utils";
-import Loader from "./Loader";
 
 type PostStatProps = {
   post?: Models.Document;
@@ -34,7 +35,7 @@ const PostStats = ({ post, userId }: PostStatProps) => {
 
   useEffect(() => {
     setIsSaved(!!savedPostRecord);
-  }, [savedPostRecord]);
+  }, [currentUser]);
 
   const handleLikePost = (e: React.MouseEvent) => {
     e.stopPropagation();
