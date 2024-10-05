@@ -6,15 +6,22 @@ import {
   SelectValue,
 } from "../ui/select";
 
-const SelectBlock = () => {
+type SelectBlockProps = {
+  options: { value: string; label: string }[];
+};
+
+const SelectBlock = ({ options }: SelectBlockProps) => {
   return (
     <Select>
-      <SelectTrigger className="max-w-[120px]">
+      <SelectTrigger className="max-w-[135px] flex gap-1">
         <SelectValue placeholder="Sort by date" />
       </SelectTrigger>
       <SelectContent className="bg-dark-3">
-        <SelectItem value="date-asc">date-asc</SelectItem>
-        <SelectItem value="date-dasc">date-desc</SelectItem>
+        {options.map(({ value, label }) => (
+          <SelectItem key={value} value={value}>
+            {label}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );
