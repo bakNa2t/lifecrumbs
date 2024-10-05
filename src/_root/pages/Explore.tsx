@@ -66,8 +66,16 @@ const Explore = () => {
 
         <SelectBlock
           options={[
-            { value: "latest", label: "Latest" },
-            { value: "earliest", label: "Earliest" },
+            {
+              value: "latest",
+              label: "Latest",
+              path: "/assets/icons/sort-asc.svg",
+            },
+            {
+              value: "earliest",
+              label: "Earliest",
+              path: "/assets/icons/sort-desc.svg",
+            },
           ]}
         />
       </div>
