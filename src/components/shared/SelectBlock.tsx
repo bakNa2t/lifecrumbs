@@ -18,7 +18,11 @@ const SelectBlock = ({ options }: SelectBlockProps) => {
       </SelectTrigger>
       <SelectContent className="bg-dark-3">
         {options.map(({ value, label, path }) => (
-          <SelectItem key={value} value={value}>
+          <SelectItem
+            key={value}
+            value={value}
+            className="cursor-pointer hover:bg-dark-4 rounded-md"
+          >
             <div className="flex gap-2">
               <p className="uppercase test-sm md:text-[12px]">{label}</p>
               <img src={path} alt="filter" width={14} height={14} />
