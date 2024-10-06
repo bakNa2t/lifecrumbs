@@ -69,12 +69,12 @@ const Explore = () => {
             {
               value: "latest",
               label: "Latest",
-              path: "/assets/icons/sort-asc.svg",
+              path: "/assets/icons/sort-desc.svg",
             },
             {
               value: "earliest",
               label: "Earliest",
-              path: "/assets/icons/sort-desc.svg",
+              path: "/assets/icons/sort-asc.svg",
             },
           ]}
         />
