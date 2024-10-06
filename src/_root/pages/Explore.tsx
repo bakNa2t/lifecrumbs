@@ -58,6 +58,15 @@ const Explore = () => {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
+          {searchValue && (
+            <img
+              src="assets/icons/close.svg"
+              alt="close"
+              width={24}
+              height={24}
+              className="cursor-pointer"
+            />
+          )}
         </div>
       </div>
 
