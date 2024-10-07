@@ -20,11 +20,13 @@ import Loader from "@/components/shared/Loader";
 
 import { SigninValidationSchema } from "@/lib/validation";
 import { useSignInAccountMutation } from "@/lib/react-query/queriesAndMutations";
+import useMobileScreen from "@/hooks/useMobileScreen";
 
 const SigninForm = () => {
   const { toast } = useToast();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
   const navigate = useNavigate();
+  const { wdth, hgt } = useMobileScreen();
 
   const { mutateAsync: signInAccount } = useSignInAccountMutation();
 
@@ -65,7 +67,11 @@ const SigninForm = () => {
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
         <div className="flex items-center justify-center gap-3">
-          <img src="/assets/images/logo.png" alt="Logo" className="w-10 h-10" />
+          <img
+            src="/assets/images/logo-lifecrumbs.png"
+            alt="Logo"
+            className="w-10 h-10"
+          />
           <span className="text-3xl font-semibold">Lifecrumbs</span>
         </div>
 
@@ -109,7 +115,7 @@ const SigninForm = () => {
           <Button type="submit" className="shad-button_primary">
             {isUserLoading ? (
               <div className="flex-center gap-2">
-                <Loader />
+                <Loader wdth={wdth} hgt={hgt} />
                 Loading...
               </div>
             ) : (
