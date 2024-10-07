@@ -87,7 +87,7 @@ const PostStats = ({ post, userId }: PostStatProps) => {
 
       <div className="flex gap-2">
         {isSavingPost || isDeletingSavedPost ? (
-          <Loader />
+          <Loader wdth={20} hgt={20} />
         ) : (
           <img
             src={

@@ -12,10 +12,12 @@ import {
   useSearchPostsQuery,
 } from "@/lib/react-query/queriesAndMutations";
 import useDebounce from "@/hooks/useDebounce";
+import useMobileScreen from "@/hooks/useMobileScreen";
 
 const Explore = () => {
   const { ref, inView } = useInView();
   const [searchValue, setSearchValue] = useState("");
+  const { wdth, hgt } = useMobileScreen();
 
   const { data: posts, fetchNextPage, hasNextPage } = useGetPostsQuery();
 
@@ -34,7 +36,7 @@ const Explore = () => {
   if (!posts) {
     return (
       <div className="flex-center w-full h-full">
-        <Loader />
+        <Loader wdth={wdth} hgt={hgt} />
       </div>
     );
   }
@@ -116,7 +118,7 @@ const Explore = () => {
 
       {hasNextPage && !searchValue && (
         <div ref={ref} className="mt-10">
-          <Loader />
+          <Loader wdth={wdth} hgt={hgt} />
         </div>
       )}
     </div>

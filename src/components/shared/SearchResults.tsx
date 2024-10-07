@@ -2,6 +2,8 @@
 import Loader from "./Loader";
 import GridPostList from "./GridPostList";
 
+import useMobileScreen from "@/hooks/useMobileScreen";
+
 type searchResultsProps = {
   isSearchFetching: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,7 +15,9 @@ const SearchResults = ({
   isSearchFetching,
   searchedPosts,
 }: searchResultsProps) => {
-  if (isSearchFetching) return <Loader />;
+  const { wdth, hgt } = useMobileScreen();
+
+  if (isSearchFetching) return <Loader wdth={wdth} hgt={hgt} />;
 
   if (searchedPosts && searchedPosts.documents.length > 0) {
     return <GridPostList posts={searchedPosts.documents} />;

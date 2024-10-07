@@ -2,12 +2,13 @@ import { Models } from "appwrite";
 
 import Loader from "@/components/shared/Loader";
 import PostCard from "@/components/shared/PostCard";
+import UserCard from "@/components/shared/UserCard";
 
 import {
   useGetRecentPostsQuery,
   useGetUsersQuery,
 } from "@/lib/react-query/queriesAndMutations";
-import UserCard from "@/components/shared/UserCard";
+import useMobileScreen from "@/hooks/useMobileScreen";
 
 const Home = () => {
   const {
@@ -21,6 +22,8 @@ const Home = () => {
     isPending: isUserLoading,
     isError: isErrorCreators,
   } = useGetUsersQuery(5);
+
+  const { wdth, hgt } = useMobileScreen();
 
   return (
     <div className="flex flex-1">
@@ -36,7 +39,7 @@ const Home = () => {
           )}
 
           {isPostLoading && !posts ? (
-            <Loader />
+            <Loader wdth={wdth} hgt={hgt} />
           ) : (
             <ul className="flex flex-col flex-1 gap-8 w-full">
               {posts?.documents.map((post: Models.Document) => (
@@ -59,7 +62,7 @@ const Home = () => {
         )}
 
         {isUserLoading && !creators ? (
-          <Loader />
+          <Loader wdth={wdth} hgt={hgt} />
         ) : (
           <ul className="grid 2xl:grid-cols-2 gap-4">
             {creators?.documents.map((creator) => (
