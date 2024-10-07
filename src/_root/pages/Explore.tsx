@@ -23,6 +23,10 @@ const Explore = () => {
   const { data: searchedPosts, isFetching: isSearchFetching } =
     useSearchPostsQuery(debouncedSearchValue);
 
+  const removeSearchValue = () => {
+    setSearchValue("");
+  };
+
   useEffect(() => {
     if (inView && !searchValue) fetchNextPage();
   }, [inView, searchValue]);
@@ -59,13 +63,14 @@ const Explore = () => {
             onChange={(e) => setSearchValue(e.target.value)}
           />
           {searchValue && (
-            <img
-              src="assets/icons/close.svg"
-              alt="close"
-              width={24}
-              height={24}
-              className="cursor-pointer"
-            />
+            <button onClick={removeSearchValue} className="cursor-pointer">
+              <img
+                src="assets/icons/close.svg"
+                alt="close"
+                width={24}
+                height={24}
+              />
+            </button>
           )}
         </div>
       </div>
