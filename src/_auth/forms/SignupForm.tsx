@@ -82,7 +82,7 @@ const SignupForm = () => {
 
   return (
     <Form {...form}>
-      <div className="sm:w-420 flex-center flex-col">
+      <div className="w-80 sm:w-420 flex-center flex-col">
         <div className="flex items-center justify-center gap-3">
           <img
             src="/assets/images/logo-lifecrumbs.png"
@@ -95,7 +95,7 @@ const SignupForm = () => {
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
           Create a new account
         </h2>
-        <p className="small-medium text-light-3 md:base-regular">
+        <p className="small-medium text-light-3 md:base-regular text-center">
           To get started with Lifecrumbs, please enter your details
         </p>
 
@@ -166,11 +166,11 @@ const SignupForm = () => {
             )}
           </Button>
 
-          <p className="text-small-regular text-light-2 text-center mt-2">
+          <p className="small-regular text-light-2 text-center mt-2">
             Already have an account?
             <Link
               to="/sign-in"
-              className="text-primary-500 tex-small-semibold ml-1"
+              className="text-primary-500 small-semibold ml-1"
             >
               Log in
             </Link>

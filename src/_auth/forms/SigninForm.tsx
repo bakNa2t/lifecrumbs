@@ -123,11 +123,11 @@ const SigninForm = () => {
             )}
           </Button>
 
-          <p className="text-small-regular text-light-2 text-center mt-2">
+          <p className="small-regular text-light-2 text-center mt-2">
             Don't have an account?
             <Link
               to="/sign-up"
-              className="text-primary-500 tex-small-semibold ml-1"
+              className="text-primary-500 small-semibold ml-1"
             >
               Sign up
             </Link>
