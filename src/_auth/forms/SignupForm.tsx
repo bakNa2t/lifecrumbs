@@ -24,11 +24,13 @@ import {
   useCreateAccountMutation,
   useSignInAccountMutation,
 } from "@/lib/react-query/queriesAndMutations";
+import useMobileScreen from "@/hooks/useMobileScreen";
 
 const SignupForm = () => {
   const { toast } = useToast();
   const { checkAuthUser /*, isLoading: isUserLoading*/ } = useUserContext();
   const navigate = useNavigate();
+  const { wdth, hgt } = useMobileScreen();
 
   const { mutateAsync: createUserAccount, isPending: isCreatingAccount } =
     useCreateAccountMutation();
@@ -85,7 +87,7 @@ const SignupForm = () => {
           <img
             src="/assets/images/logo-lifecrumbs.png"
             alt="Logo"
-            className="w-10 h-10"
+            className="w-12 h-12"
           />
           <span className="text-3xl font-semibold">Lifecrumbs</span>
         </div>
@@ -110,9 +112,6 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
-                {/* <FormDescription>
-                  This is your public display name.
-                </FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
@@ -159,7 +158,7 @@ const SignupForm = () => {
           <Button type="submit" className="shad-button_primary">
             {isCreatingAccount ? (
               <div className="flex-center gap-2">
-                <Loader />
+                <Loader wdth={wdth} hgt={hgt} />
                 Loading...
               </div>
             ) : (

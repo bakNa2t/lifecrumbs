@@ -70,7 +70,7 @@ const SigninForm = () => {
           <img
             src="/assets/images/logo-lifecrumbs.png"
             alt="Logo"
-            className="w-10 h-10"
+            className="w-12 h-12"
           />
           <span className="text-3xl font-semibold">Lifecrumbs</span>
         </div>
