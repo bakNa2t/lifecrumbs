@@ -24,12 +24,15 @@ import {
   useGetUserByIdQuery,
   useUpdateUserMutation,
 } from "@/lib/react-query/queriesAndMutations";
+import useMobileScreen from "@/hooks/useMobileScreen";
 
 const UpdateProfile = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { id } = useParams();
   const { user, setUser } = useUserContext();
+  const { wdth, hgt } = useMobileScreen();
+
   const form = useForm<z.infer<typeof ProfileValidatinSchema>>({
     resolver: zodResolver(ProfileValidatinSchema),
     defaultValues: {
@@ -48,7 +51,7 @@ const UpdateProfile = () => {
   if (!currentUser) {
     return (
       <div className="flex-center w-full h-full">
-        <Loader />
+        <Loader wdth={wdth} hgt={hgt} />
       </div>
     );
   }
@@ -193,7 +196,7 @@ const UpdateProfile = () => {
                 className="shad-button_primary whitespace-nowrap active:translate-y-[2px]"
                 disabled={isLoadingUpdate}
               >
-                {isLoadingUpdate && <Loader />}
+                {isLoadingUpdate && <Loader wdth={wdth} hgt={hgt} />}
                 Update Profile
               </Button>
             </div>

@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 
 import { useUserContext } from "@/context/AuthContext";
 import { useGetUserByIdQuery } from "@/lib/react-query/queriesAndMutations";
+import useMobileScreen from "@/hooks/useMobileScreen";
 
 interface StatBlockProp {
   value: string | number;
@@ -33,13 +34,14 @@ const Profile = () => {
   const { id } = useParams();
   const { user } = useUserContext();
   const { pathname } = useLocation();
+  const { wdth, hgt } = useMobileScreen();
 
   const { data: currentUser } = useGetUserByIdQuery(id || "");
 
   if (!currentUser)
     return (
       <div className="flex-center w-full h-full">
-        <Loader />
+        <Loader wdth={wdth} hgt={hgt} />
       </div>
     );
 

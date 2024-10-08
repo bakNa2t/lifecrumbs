@@ -4,8 +4,10 @@ import Loader from "@/components/shared/Loader";
 import GridPostList from "@/components/shared/GridPostList";
 
 import { useGetCurrentUserQuery } from "@/lib/react-query/queriesAndMutations";
+import useMobileScreen from "@/hooks/useMobileScreen";
 
 const Saved = () => {
+  const { wdth, hgt } = useMobileScreen();
   const { data: currentUser } = useGetCurrentUserQuery();
 
   const savePosts = currentUser?.save
@@ -31,7 +33,7 @@ const Saved = () => {
       </div>
 
       {!currentUser ? (
-        <Loader />
+        <Loader wdth={wdth} hgt={hgt} />
       ) : (
         <ul className="w-full flex justify-center max-w-5xl  gap-8">
           {savePosts.length === 0 ? (
