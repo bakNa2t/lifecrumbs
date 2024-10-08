@@ -32,7 +32,7 @@ const PostDetails = () => {
 
   const handleDeletePost = () => {
     deletePost({
-      postId: id,
+      postId: id ?? "",
       imageId: post?.imageId,
     });
 
