@@ -12,11 +12,13 @@ import {
   useGetUserPostsQuery,
 } from "@/lib/react-query/queriesAndMutations";
 import GridPostList from "@/components/shared/GridPostList";
+import useMobileScreen from "@/hooks/useMobileScreen";
 
 const PostDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { user } = useUserContext();
+  const { wdth, hgt } = useMobileScreen();
 
   const { data: post, isPending } = useGetPostByIdQuery(id || "");
   const { data: userPosts, isPending: isUserPostLoading } =
@@ -51,7 +53,7 @@ const PostDetails = () => {
       </div>
 
       {isPending ? (
-        <Loader />
+        <Loader wdth={wdth} hgt={hgt} />
       ) : (
         <div className="post_details-card">
           <img src={post?.imageUrl} alt="post" className="post_details-img" />
@@ -152,7 +154,7 @@ const PostDetails = () => {
           More Related Posts
         </h3>
         {isUserPostLoading || !relatedPosts ? (
-          <Loader />
+          <Loader wdth={wdth} hgt={hgt} />
         ) : (
           <GridPostList posts={relatedPosts} />
         )}
