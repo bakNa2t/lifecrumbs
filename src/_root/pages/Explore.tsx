@@ -50,22 +50,26 @@ const Explore = () => {
     <div className="explore-container">
       <div className="explore-inner_container">
         <h2 className="h3-bold md:h2-bold w-full">Search Post</h2>
-        <div className="flex gap-1 px-4 w-full rounded-lg bg-dark-4">
+        <div className="flex gap-1 w-full rounded-lg bg-dark-4 relative">
           <img
             src="assets/icons/search.svg"
             alt="search"
             width={24}
             height={24}
+            className="absolute left-3 top-1/2 -translate-y-1/2"
           />
           <Input
             type="text"
             placeholder="Search post"
-            className="explore-search"
+            className="explore-search pl-12"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
           {searchValue && (
-            <button onClick={removeSearchValue} className="cursor-pointer">
+            <button
+              onClick={removeSearchValue}
+              className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2"
+            >
               <img
                 src="assets/icons/close.svg"
                 alt="close"
