@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "../ui/button";
 
@@ -9,8 +9,10 @@ import { sidebarLinkIcons } from "@/constants";
 import { INavLink } from "@/types";
 
 const LeftSidebar = () => {
-  const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [theme, setTheme] = useState(false);
+
   const { mutate: signOutAccount, isSuccess } = useSignOutAccountMutation();
   const { user } = useUserContext();
 
@@ -76,19 +78,30 @@ const LeftSidebar = () => {
         </ul>
       </div>
 
-      <Button
-        variant="ghost"
-        className="shad-button_ghost"
-        onClick={() => signOutAccount()}
-      >
-        <img
-          src="/assets/icons/logout.svg"
-          width={26}
-          height={26}
-          alt="logout"
-        />
-        <p className="small-medium lg:base-medium">Logout</p>
-      </Button>
+      <div className="flex-between">
+        <Button
+          variant="ghost"
+          className="shad-button_ghost"
+          onClick={() => signOutAccount()}
+        >
+          <img
+            src="/assets/icons/logout.svg"
+            width={26}
+            height={26}
+            alt="logout"
+          />
+          <p className="small-medium lg:base-medium">Logout</p>
+        </Button>
+
+        <Button type="button" onClick={() => setTheme(!theme)}>
+          <img
+            src={theme ? "/assets/icons/i-sun.svg" : "/assets/icons/i-moon.svg"}
+            alt="theme"
+            width={24}
+            height={24}
+          />
+        </Button>
+      </div>
     </nav>
   );
 };
