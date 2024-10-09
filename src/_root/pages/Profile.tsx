@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/context/AuthContext";
 import { useGetUserByIdQuery } from "@/lib/react-query/queriesAndMutations";
 import useMobileScreen from "@/hooks/useMobileScreen";
+import useMoveBack from "@/hooks/useMoveBack";
 
 interface StatBlockProp {
   value: string | number;
@@ -35,6 +36,7 @@ const Profile = () => {
   const { user } = useUserContext();
   const { pathname } = useLocation();
   const { wdth, hgt } = useMobileScreen();
+  const toBack = useMoveBack();
 
   const { data: currentUser } = useGetUserByIdQuery(id || "");
 
@@ -102,7 +104,11 @@ const Profile = () => {
             </div>
 
             <div className={`${user.id === id && "hidden"} flex gap-2`}>
-              <Button type="button" className="shad-button_dark_4">
+              <Button
+                type="button"
+                className="shad-button_dark_4"
+                onClick={toBack}
+              >
                 Back
               </Button>
               <Button type="button" className="shad-button_primary px-8">
