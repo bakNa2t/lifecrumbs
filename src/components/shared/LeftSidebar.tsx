@@ -11,7 +11,7 @@ import { INavLink } from "@/types";
 const LeftSidebar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState("light");
 
   const { mutate: signOutAccount, isSuccess } = useSignOutAccountMutation();
   const { user } = useUserContext();
@@ -19,6 +19,18 @@ const LeftSidebar = () => {
   useEffect(() => {
     if (isSuccess) navigate(0);
   }, [isSuccess, navigate]);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleThemeSwap = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <nav className="leftsidebar">
@@ -93,9 +105,13 @@ const LeftSidebar = () => {
           <p className="small-medium lg:base-medium">Logout</p>
         </Button>
 
-        <Button type="button" onClick={() => setTheme(!theme)}>
+        <Button type="button" onClick={handleThemeSwap}>
           <img
-            src={theme ? "/assets/icons/i-sun.svg" : "/assets/icons/i-moon.svg"}
+            src={
+              theme === "light"
+                ? "/assets/icons/i-sun.svg"
+                : "/assets/icons/i-moon.svg"
+            }
             alt="theme"
             width={24}
             height={24}

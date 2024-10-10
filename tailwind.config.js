@@ -20,11 +20,25 @@ export default {
         "primary-500": "#9966cc",
         "primary-600": "#7943ad",
         "primary-700": "#663b8e",
-        "primary-800": "##533172",
+        "primary-800": "#533172",
         "secondary-500": "#FFB620",
         "off-white": "#D0DFFF",
         red: "#FF5A5A",
-        //dark liver
+        // "bright-1": "#ebe5ef",
+        // "bright-2": "#d6cadd",
+        // "bright-3": "#c4b3cd",
+        // "bright-4": "#ab94b8",
+        //=====================
+        // "bright-1": "#edddea",
+        // "bright-2": "#d8b2d1",
+        // "bright-3": "#cb9bc1",
+        // "bright-4": "#b97bab",
+        //=====================
+        "bright-1": "#f3eded",
+        "bright-2": "#e9dfdf",
+        "bright-3": "#d8cac9",
+        "bright-4": "#c4aead",
+        //dark theme
         "dark-1": "#2a2729",
         "dark-2": "#403a3d",
         "dark-3": "#494346",
