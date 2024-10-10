@@ -109,6 +109,12 @@ const Profile = () => {
                 className="shad-button_dark_4"
                 onClick={toBack}
               >
+                <img
+                  src="/assets/icons/back.svg"
+                  alt="back"
+                  width={20}
+                  height={20}
+                />
                 Back
               </Button>
               <Button type="button" className="shad-button_primary px-8">
