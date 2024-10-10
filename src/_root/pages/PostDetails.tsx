@@ -13,9 +13,11 @@ import {
 } from "@/lib/react-query/queriesAndMutations";
 import GridPostList from "@/components/shared/GridPostList";
 import useMobileScreen from "@/hooks/useMobileScreen";
+import useMoveBack from "@/hooks/useMoveBack";
 
 const PostDetails = () => {
   const navigate = useNavigate();
+  const toBack = useMoveBack();
   const { id } = useParams();
   const { user } = useUserContext();
   const { wdth, hgt } = useMobileScreen();
@@ -42,13 +44,9 @@ const PostDetails = () => {
   return (
     <div className="post_details-container">
       <div className="hidden md:flex max-w-5xl w-full">
-        <Button
-          className="shad-button_ghost"
-          variant="ghost"
-          onClick={() => navigate(-1)}
-        >
-          <img src="/assets/icons/back.svg" alt="back" width={28} height={28} />
-          <p className="small-medium lg:base-medium">Back</p>
+        <Button type="button" className="shad-button_dark_4" onClick={toBack}>
+          <img src="/assets/icons/back.svg" alt="back" width={20} height={20} />
+          Back
         </Button>
       </div>
 
