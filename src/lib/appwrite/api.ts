@@ -124,7 +124,7 @@ export async function createPost(post: INewPost) {
     }
 
     //convert tags into array
-    const tags = post.tags?.replace(/ /g, "").split(",") || [];
+    const tags = post.tags?.replace(/ /g, "").toLowerCase().split(",") || [];
 
     //create post
     const newPost = await databases.createDocument(
