@@ -1,14 +1,22 @@
 import { useParams } from "react-router-dom";
 
+import Loader from "@/components/shared/Loader";
 import PostForm from "@/components/forms/PostForm";
+
 import { useGetPostByIdQuery } from "@/lib/react-query/queriesAndMutations";
-import { Loader } from "lucide-react";
+import useMobileScreen from "@/hooks/useMobileScreen";
 
 const EditPost = () => {
   const { id } = useParams();
+  const { wdth, hgt } = useMobileScreen();
   const { data: post, isPending } = useGetPostByIdQuery(id || "");
 
-  if (isPending) return <Loader />;
+  if (isPending)
+    return (
+      <div className="flex-center w-full h-full">
+        <Loader wdth={wdth} hgt={hgt} />
+      </div>
+    );
 
   return (
     <div className="flex flex-1">
