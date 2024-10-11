@@ -105,7 +105,11 @@ const LeftSidebar = () => {
           <p className="small-medium lg:base-medium">Logout</p>
         </Button>
 
-        <Button type="button" onClick={handleThemeSwap}>
+        <Button
+          type="button"
+          className="px-2 py-4 bg-transparent hover:bg-dark-4 hover:dark:bg-bright-4 rounded-full"
+          onClick={handleThemeSwap}
+        >
           <img
             src={
               theme === "light"

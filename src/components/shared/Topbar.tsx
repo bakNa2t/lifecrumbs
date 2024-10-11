@@ -24,20 +24,23 @@ const Topbar = () => {
               alt="Logo"
               className="w-10 h-10"
             />
-            <span className="text-3xl font-semibold">Lifecrumbs</span>
+            <span className="text-2xl md:text-3xl font-semibold">
+              Lifecrumbs
+            </span>
           </div>
         </Link>
 
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <Button
-            variant="ghost"
-            className="shad-button_ghost"
+            // variant="ghost"
+            size="icon"
+            className="shad-button_ghost !justify-center"
             onClick={() => signOutAccount()}
           >
             <img
               src="/assets/icons/logout.svg"
-              width={26}
-              height={26}
+              width={24}
+              height={24}
               alt="logout"
             />
           </Button>
