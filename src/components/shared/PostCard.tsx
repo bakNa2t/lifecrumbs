@@ -62,11 +62,13 @@ const PostCard = ({ post }: PostCardProps) => {
       </div>
 
       <Link to={`/posts/${post.$id}`}>
-        <img
-          src={post.imageUrl || "assets/images/post-default.svg"}
-          alt="post image"
-          className="post-card_img mt-5"
-        />
+        <div className="overflow-hidden h-64 xs:h-[400px] lg:h-[450px] w-full rounded-[24px] mt-5">
+          <img
+            src={post.imageUrl || "assets/images/post-default.png"}
+            alt="post image"
+            className="post-card_img hover:scale-105 transition duration-500 linear"
+          />
+        </div>
 
         <div className="small-medium lg:base-medium pt-2 pb-5">
           <p>{post.caption}</p>
