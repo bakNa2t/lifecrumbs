@@ -1,12 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "../ui/button";
 import { useSignOutAccountMutation } from "@/lib/react-query/queriesAndMutations";
 import { useUserContext } from "@/context/AuthContext";
+import ThemeBtn from "./ThemeBtn";
 
 const Topbar = () => {
   const navigate = useNavigate();
+
   const { mutate: signOutAccount, isSuccess } = useSignOutAccountMutation();
   const { user } = useUserContext();
 
@@ -44,11 +46,14 @@ const Topbar = () => {
               alt="logout"
             />
           </Button>
+
+          <ThemeBtn sz="icon" />
+
           <Link to={`/profile/${user.id}`} className="flex-center gap-3">
             <img
               src={user.imageUrl || "assets/icons/profile-default.svg"}
               alt="profile"
-              className="h-8 w-8 rounded-full"
+              className="h-8 w-8 rounded-full mx-1"
             />
           </Link>
         </div>
