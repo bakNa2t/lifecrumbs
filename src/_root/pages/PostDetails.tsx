@@ -44,7 +44,11 @@ const PostDetails = () => {
   return (
     <div className="post_details-container">
       <div className="hidden md:flex max-w-5xl w-full">
-        <Button type="button" className="shad-button_dark_4" onClick={toBack}>
+        <Button
+          type="button"
+          className="shad-button_dark_4 hover:shadow-lg hover:shadow-light-3"
+          onClick={toBack}
+        >
           <img src="/assets/icons/back.svg" alt="back" width={20} height={20} />
           Back
         </Button>
@@ -95,10 +99,12 @@ const PostDetails = () => {
                 </div>
               </Link>
 
-              <div className="flex-center gap-3">
+              <div className="flex-center gap-3 ">
                 <Link
                   to={`/update-post/${post?.$id}`}
-                  className={`${user.id !== post?.creator.$id && "hidden"}`}
+                  className={`${
+                    user.id !== post?.creator.$id && "hidden"
+                  } hover:transform hover:scale-105 `}
                 >
                   <img
                     src="/assets/icons/edit.svg"
@@ -109,8 +115,8 @@ const PostDetails = () => {
                 </Link>
 
                 <Button
-                  variant={"ghost"}
-                  className={`ghost_details-delete_btn p-0 ${
+                  type="button"
+                  className={`post_details-delete_btn p-0 hover:transform hover:scale-105 ${
                     user.id !== post?.creator.$id && "hidden"
                   }`}
                   onClick={handleDeletePost}

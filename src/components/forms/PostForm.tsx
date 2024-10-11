@@ -156,7 +156,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
         <div className="flex gap-4 items-center justify-end">
           <Button
             type="button"
-            className="shad-button_dark_4"
+            className="shad-button_dark_4 hover:shadow-lg hover:shadow-light-3"
             onClick={() => navigate(-1)}
           >
             Cancel
@@ -164,7 +164,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
 
           <Button
             type="submit"
-            className="shad-button_primary whitespace-nowrap active:translate-y-[2px]"
+            className="shad-button_primary whitespace-nowrap active:translate-y-[2px] hover:shadow-lg hover:shadow-light-3"
             disabled={isLoadingCreate || isLoadingUpdate}
           >
             {isLoadingCreate || (isLoadingUpdate && "Loading...")}

@@ -87,7 +87,7 @@ const Profile = () => {
             <div className={`${user.id !== currentUser.$id && "hidden"}`}>
               <Link
                 to={`/update-profile/${currentUser.$id}`}
-                className={`h-12 bg-dark-4 hover:bg-dark-2 px-5 text-light-1 flex-center gap-2 rounded-lg ${
+                className={`h-12 bg-dark-4 hover:bg-dark-2 px-5 text-light-1 flex-center gap-2 rounded-lg hover:shadow-lg hover:shadow-light-3 ${
                   user.id !== currentUser.$id && "hidden"
                 }`}
               >
@@ -106,7 +106,7 @@ const Profile = () => {
             <div className={`${user.id === id && "hidden"} flex gap-2`}>
               <Button
                 type="button"
-                className="shad-button_dark_4"
+                className="shad-button_dark_4 hover:shadow-lg hover:shadow-light-3"
                 onClick={toBack}
               >
                 <img
@@ -117,7 +117,10 @@ const Profile = () => {
                 />
                 Back
               </Button>
-              <Button type="button" className="shad-button_primary px-8">
+              <Button
+                type="button"
+                className="shad-button_primary px-8 hover:shadow-lg hover:shadow-light-3"
+              >
                 Follow
               </Button>
             </div>
