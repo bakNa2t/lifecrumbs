@@ -17,6 +17,7 @@ export default {
     },
     extend: {
       colors: {
+        "primary-400": "#a574d8",
         "primary-500": "#9966cc",
         "primary-600": "#7943ad",
         "primary-700": "#663b8e",
@@ -34,19 +35,26 @@ export default {
         // "bright-3": "#cb9bc1",
         // "bright-4": "#b97bab",
         //=====================
+        //=====light theme=====
         "bright-1": "#f3eded",
-        "bright-2": "#e9dfdf",
-        "bright-3": "#d8cac9",
-        "bright-4": "#c4aead",
-        //dark theme
+        "bright-2": "#d8cac9",
+        "bright-3": "#c4aead",
+        "bright-4": "#917271",
+        //=====dark theme=====
         "dark-1": "#2a2729",
         "dark-2": "#403a3d",
         "dark-3": "#494346",
         "dark-4": "#534b4f",
+        //=====light modifier
         "light-1": "#d8bfd8   ",
         "light-2": "#EFEFEF",
         "light-3": "#7a7bb1",
         "light-4": "#a8afd1",
+        //=====dark modifier
+        "dusk-1": "#a8afd1",
+        "dusk-2": "#7a7bb1",
+        "dusk-3": "#EFEFEF",
+        "dusk-4": "#d8bfd8",
       },
       screens: {
         xs: "480px",

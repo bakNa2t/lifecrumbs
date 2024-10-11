@@ -135,7 +135,7 @@
   }
 
   .explore-search {
-    @apply h-12 bg-dark-4 dark:bg-bright-4 border-none placeholder:text-light-4 focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-1 !important;
+    @apply h-12 bg-dark-4 dark:bg-bright-4 border-none placeholder:text-light-4 dark:placeholder:text-dusk-4 focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-1 !important;
   }
 
   /* Home */
@@ -169,7 +169,7 @@
   }
 
   .post_details-delete_btn {
-    @apply p-0 flex gap-3 hover:bg-transparent hover:text-light-1  text-light-2 small-medium lg:base-medium;
+    @apply p-0 flex gap-3 hover:bg-transparent hover:text-light-1 dark:hover:text-dusk-1  text-light-2 dark:text-dusk-2 small-medium lg:base-medium;
   }
 
   /* Profile */
@@ -201,7 +201,7 @@
   }
 
   .file_uploader-label {
-    @apply text-light-4 text-center small-regular w-full p-4 border-t border-t-dark-4 dark:border-t-bright-4;
+    @apply text-light-4 dark:text-dusk-4 text-center small-regular w-full p-4 border-t border-t-dark-4 dark:border-t-bright-3;
   }
 
   .file_uploader-box {
@@ -227,12 +227,12 @@
   }
 
   .leftsidebar-link {
-    @apply rounded-lg base-medium hover:bg-primary-500 transition;
+    @apply rounded-lg base-medium hover:bg-primary-500 dark:hover:bg-primary-400 transition;
   }
 
   /* Post Card */
   .post-card {
-    @apply bg-dark-2 dark:bg-bright-2 rounded-3xl border border-dark-4 p-5 lg:p-7 w-full max-w-screen-sm;
+    @apply bg-dark-2 dark:bg-bright-2 rounded-3xl border border-dark-4 dark:border-bright-4 p-5 lg:p-7 w-full max-w-screen-sm;
   }
 
   .post-card_img {
@@ -254,7 +254,7 @@
   /* SHADCN COMPONENTS */
   /* Form */
   .shad-form_label {
-    @apply text-white !important;
+    @apply text-white dark:text-dusk-2 !important;
   }
 
   .shad-form_message {
@@ -262,23 +262,23 @@
   }
 
   .shad-input {
-    @apply h-12 bg-dark-4 dark:bg-bright-4 border-none placeholder:text-light-4 focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 !important;
+    @apply h-12 bg-dark-4 dark:bg-bright-4 border-none placeholder:text-light-4 dark:placeholder:text-dusk-4 focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 dark:ring-offset-dusk-3 !important;
   }
 
   .shad-textarea {
-    @apply h-36 bg-dark-3 dark:bg-bright-3 rounded-xl border-none focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 !important;
+    @apply h-36 bg-dark-3 dark:bg-bright-3 rounded-xl border-none focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 dark:ring-offset-dusk-3 !important;
   }
 
   /* Button */
   .shad-button_primary {
-    @apply bg-primary-500 hover:bg-primary-600 text-light-1 flex gap-2 !important;
+    @apply bg-primary-500 hover:bg-primary-600 text-light-1 dark:text-dusk-1 flex gap-2 !important;
   }
 
   .shad-button_dark_4 {
-    @apply bg-dark-4 dark:bg-bright-4 hover:bg-dark-2 dark:hover:bg-bright-2 px-5 text-light-1 flex gap-2 !important;
+    @apply bg-dark-4 dark:bg-bright-4 hover:bg-dark-2 dark:hover:bg-bright-2 px-5 text-light-1 dark:text-dusk-1 flex gap-2 !important;
   }
 
   .shad-button_ghost {
-    @apply flex gap-4 items-center justify-start hover:bg-transparent hover:text-white !important;
+    @apply flex gap-4 items-center justify-start hover:bg-transparent hover:text-white dark:hover:text-dusk-1 !important;
   }
 }
