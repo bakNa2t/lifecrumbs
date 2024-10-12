@@ -89,7 +89,7 @@ const Profile = () => {
             <div className={`${user.id !== currentUser.$id && "hidden"}`}>
               <Link
                 to={`/update-profile/${currentUser.$id}`}
-                className={`h-12 bg-dark-4 hover:bg-dark-2 px-5 text-light-1 flex-center gap-2 rounded-lg hover:shadow-lg hover:shadow-light-3 ${
+                className={`h-12 bg-dark-4 hover:bg-dark-2 px-5 text-light-1 dark:text-dusk-1 flex-center gap-2 rounded-lg hover:shadow-lg hover:shadow-light-3 ${
                   user.id !== currentUser.$id && "hidden"
                 }`}
               >
@@ -131,7 +131,7 @@ const Profile = () => {
       </div>
 
       {currentUser.$id === user.id && (
-        <div className="flex max-w-5xl w-full">
+        <div className="flex max-w-5xl w-full dark:text-dusk-2">
           <Link
             to={`/profile/${id}`}
             className={`profile-tab rounded-l-lg ${
