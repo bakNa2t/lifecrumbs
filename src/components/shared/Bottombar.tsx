@@ -14,7 +14,7 @@ const Bottombar = () => {
           <Link
             to={link.route}
             className={`${
-              isActive && "bg-primary-500 rounded-[10px] "
+              isActive && "bg-primary-500 rounded-[10px]"
             } flex-center flex-col gap-1 p-2 transition`}
             key={link.label}
           >
@@ -25,7 +25,13 @@ const Bottombar = () => {
               width={24}
               height={24}
             />
-            <p className="tiny-medium text-light-2">{link.label}</p>
+            <p
+              className={`${
+                isActive && "dark:text-light-2"
+              } tiny-medium text-light-2 dark:text-dusk-2`}
+            >
+              {link.label}
+            </p>
           </Link>
         );
       })}
