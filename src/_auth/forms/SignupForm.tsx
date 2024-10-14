@@ -87,12 +87,12 @@ const SignupForm = () => {
           <img
             src="/assets/images/logo-lifecrumbs.png"
             alt="Logo"
-            className="w-12 h-12"
+            className="w-12 h-12 shadow-shd-logo rounded-full"
           />
           <span className="text-3xl font-semibold">Lifecrumbs</span>
         </div>
 
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
+        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-8">
           Create a new account
         </h2>
         <p className="small-medium text-light-3 md:base-regular text-center">
