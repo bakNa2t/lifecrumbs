@@ -56,6 +56,10 @@ export default {
         "dusk-3": "#EFEFEF",
         "dusk-4": "#d8bfd8",
       },
+      boxShadow: {
+        "shd-logo": "0px 0px 10px 2px rgba(138,43,226, 0.5)",
+        "shd-btn": "0px 0px 4px 2px rgba(138,43,226, 0.8)",
+      },
       screens: {
         xs: "480px",
       },
