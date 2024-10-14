@@ -28,13 +28,13 @@ import useMobileScreen from "@/hooks/useMobileScreen";
 
 const SignupForm = () => {
   const { toast } = useToast();
-  const { checkAuthUser /*, isLoading: isUserLoading*/ } = useUserContext();
+  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
   const navigate = useNavigate();
   const { wdth, hgt } = useMobileScreen();
 
   const { mutateAsync: createUserAccount, isPending: isCreatingAccount } =
     useCreateAccountMutation();
-  const { mutateAsync: signInAccount /*, isPending: isSigningIn*/ } =
+  const { mutateAsync: signInAccount, isPending: isSigningInUser } =
     useSignInAccountMutation();
 
   const form = useForm<z.infer<typeof SignupValidationSchema>>({
@@ -156,7 +156,7 @@ const SignupForm = () => {
             )}
           />
           <Button type="submit" className="shad-button_primary">
-            {isCreatingAccount ? (
+            {isCreatingAccount || isSigningInUser || isUserLoading ? (
               <div className="flex-center gap-2">
                 <Loader wdth={wdth} hgt={hgt} />
                 Loading...
