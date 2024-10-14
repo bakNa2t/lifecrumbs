@@ -9,6 +9,7 @@ import {
   useLikePostMutation,
   useSavePostMutation,
 } from "@/lib/react-query/queriesAndMutations";
+import { useToast } from "@/hooks/use-toast";
 import { checkIsLiked } from "@/lib/utils";
 
 type PostStatProps = {
@@ -21,6 +22,7 @@ const PostStats = ({ post, userId }: PostStatProps) => {
 
   const [likes, setLikes] = useState(likesList);
   const [isSaved, setIsSaved] = useState(false);
+  const { toast } = useToast();
 
   const { mutate: likePost } = useLikePostMutation();
   const { mutate: savePost, isPending: isSavingPost } = useSavePostMutation();
@@ -46,8 +48,16 @@ const PostStats = ({ post, userId }: PostStatProps) => {
 
     if (hasLiked) {
       newLikes = newLikes.filter((id) => id !== userId);
+
+      toast({
+        title: "You have unliked this post",
+      });
     } else {
       newLikes.push(userId);
+
+      toast({
+        title: "You have liked this post",
+      });
     }
 
     setLikes(newLikes);
@@ -61,9 +71,11 @@ const PostStats = ({ post, userId }: PostStatProps) => {
     if (savedPostRecord) {
       setIsSaved(false);
       deleteSavedPost(savedPostRecord.$id);
+      toast({ title: "Post has been removed from your Saved" });
     } else {
       savePost({ postId: post?.$id || "", userId });
       setIsSaved(true);
+      toast({ title: "Post has been added to your Saved" });
     }
   };
 
