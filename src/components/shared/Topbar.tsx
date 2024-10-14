@@ -24,7 +24,7 @@ const Topbar = () => {
             <img
               src="/assets/images/logo-lifecrumbs.png"
               alt="Logo"
-              className="w-10 h-10"
+              className="w-10 h-10 shadow-shd-logo rounded-full"
             />
             <span className="text-2xl md:text-3xl font-semibold">
               Lifecrumbs

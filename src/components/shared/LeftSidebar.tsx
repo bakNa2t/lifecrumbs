@@ -40,7 +40,7 @@ const LeftSidebar = () => {
             <img
               src="/assets/images/logo-lifecrumbs.png"
               alt="Logo"
-              className="w-12 h-12"
+              className="w-12 h-12 shadow-shd-logo rounded-full"
             />
             <span className="text-3xl font-semibold">Lifecrumbs</span>
           </div>
