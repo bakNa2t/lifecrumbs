@@ -131,6 +131,10 @@
     background: #403a3d;
   }
 
+  .auth-scrollbar {
+    @apply custom-scrollbar dark:custom-scrollbar-lt;
+  }
+
   .common-container {
     @apply flex flex-col flex-1 items-center gap-10 overflow-y-scroll py-10 px-5 md:px-8 lg:p-14 custom-scrollbar dark:custom-scrollbar-lt;
   }
@@ -290,7 +294,7 @@
 
   /* Button */
   .shad-button_primary {
-    @apply bg-primary-500 hover:bg-primary-600 text-light-1 hover:text-light-2 dark:text-dusk-1 flex gap-2 hover:shadow-shd-btn !important;
+    @apply bg-primary-500 hover:bg-primary-600 text-light-1 hover:text-light-2 dark:text-dusk-1 flex gap-2 !important;
   }
 
   .shad-button_dark_4 {
