@@ -16,6 +16,7 @@ import { useUserContext } from "@/context/AuthContext";
 import { useGetUserByIdQuery } from "@/lib/react-query/queriesAndMutations";
 import useMobileScreen from "@/hooks/useMobileScreen";
 import useMoveBack from "@/hooks/useMoveBack";
+import { useState } from "react";
 
 interface StatBlockProp {
   value: string | number;
@@ -34,6 +35,7 @@ const StatBlock = ({ value, label }: StatBlockProp) => {
 };
 
 const Profile = () => {
+  const [hasFollowing, setHasFollowing] = useState(false);
   const { id } = useParams();
   const { user } = useUserContext();
   const { pathname } = useLocation();
@@ -48,6 +50,22 @@ const Profile = () => {
         <Loader wdth={wdth} hgt={hgt} />
       </div>
     );
+
+  const handleFollow = () => {
+    setHasFollowing(!hasFollowing);
+  };
+
+  const handleFollowValue = () => {
+    let count = 0;
+
+    if (hasFollowing) {
+      count = 1;
+    } else {
+      count = 0;
+    }
+
+    return count;
+  };
 
   return (
     <div className="profile-container">
@@ -70,7 +88,7 @@ const Profile = () => {
 
             <div className="flex gap-8 mt-10 items-center xl:justify-start flex-wrap z-20">
               <StatBlock value={currentUser.posts.length} label="Posts" />
-              <StatBlock value={0} label="Followers" />
+              <StatBlock value={handleFollowValue()} label="Followers" />
               <StatBlock value={0} label="Following" />
             </div>
 
@@ -121,9 +139,12 @@ const Profile = () => {
               </Button>
               <Button
                 type="button"
-                className="shad-button_primary px-8 active:translate-y-[-2px] hover:shadow-lg hover:shadow-light-3"
+                className={`${
+                  hasFollowing ? "px-6" : "px-8"
+                } shad-button_primary active:translate-y-[-2px] hover:shadow-lg hover:shadow-light-3`}
+                onClick={handleFollow}
               >
-                Follow
+                {hasFollowing ? "Unfollow" : "Follow"}
               </Button>
             </div>
           </div>
