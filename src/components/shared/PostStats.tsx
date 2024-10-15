@@ -108,8 +108,8 @@ const PostStats = ({ post, userId }: PostStatProps) => {
                 : "/assets/icons/sidebar/savemark.svg"
             }
             alt="savemark"
-            width={20}
-            height={20}
+            width={22}
+            height={22}
             onClick={handleSavePost}
             className="cursor-pointer"
           />
