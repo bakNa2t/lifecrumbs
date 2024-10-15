@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { Button } from "../ui/button";
 
@@ -7,11 +7,11 @@ import { useSignOutAccountMutation } from "@/lib/react-query/queriesAndMutations
 import { useUserContext } from "@/context/AuthContext";
 import { sidebarLinkIcons } from "@/constants";
 import { INavLink } from "@/types";
+import ThemeBtn from "./ThemeBtn";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [theme, setTheme] = useState("light");
 
   const { mutate: signOutAccount, isSuccess } = useSignOutAccountMutation();
   const { user } = useUserContext();
@@ -19,18 +19,6 @@ const LeftSidebar = () => {
   useEffect(() => {
     if (isSuccess) navigate(0);
   }, [isSuccess, navigate]);
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-
-  const handleThemeSwap = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
 
   return (
     <nav className="leftsidebar">
@@ -105,22 +93,10 @@ const LeftSidebar = () => {
           <p className="small-medium lg:base-medium">Logout</p>
         </Button>
 
-        <Button
+        <ThemeBtn
           type="button"
           className="px-2 py-4 bg-transparent hover:bg-dark-4 hover:dark:bg-bright-4 rounded-full"
-          onClick={handleThemeSwap}
-        >
-          <img
-            src={
-              theme === "light"
-                ? "/assets/icons/i-sun.svg"
-                : "/assets/icons/i-moon.svg"
-            }
-            alt="theme"
-            width={24}
-            height={24}
-          />
-        </Button>
+        />
       </div>
     </nav>
   );
