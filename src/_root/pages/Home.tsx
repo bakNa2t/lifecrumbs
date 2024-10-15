@@ -51,7 +51,9 @@ const Home = () => {
       </div>
 
       <div className="home-creators">
-        <h3 className="h3-bold text-light-1">Recent Creators</h3>
+        <h3 className="h3-bold text-light-1 dark:text-dusk-1">
+          Recent Creators
+        </h3>
 
         {isErrorCreators && (
           <div className="flex-center w-full h-full">

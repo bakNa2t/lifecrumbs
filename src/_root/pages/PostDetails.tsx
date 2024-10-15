@@ -46,7 +46,7 @@ const PostDetails = () => {
       <div className="hidden md:flex max-w-5xl w-full">
         <Button
           type="button"
-          className="shad-button_dark_4 hover:shadow-lg hover:shadow-light-3"
+          className="shad-button_dark_4 active:translate-y-[-2px] hover:shadow-lg hover:shadow-light-3"
           onClick={toBack}
         >
           <img src="/assets/icons/back.svg" alt="back" width={20} height={20} />
