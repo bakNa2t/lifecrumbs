@@ -25,16 +25,6 @@ export default {
         "secondary-500": "#FFB620",
         "off-white": "#D0DFFF",
         red: "#FF5A5A",
-        // "bright-1": "#ebe5ef",
-        // "bright-2": "#d6cadd",
-        // "bright-3": "#c4b3cd",
-        // "bright-4": "#ab94b8",
-        //=====================
-        // "bright-1": "#edddea",
-        // "bright-2": "#d8b2d1",
-        // "bright-3": "#cb9bc1",
-        // "bright-4": "#b97bab",
-        //=====================
         //=====light theme=====
         "bright-1": "#f3eded",
         "bright-2": "#d8cac9",

@@ -70,7 +70,7 @@ const SigninForm = () => {
           <img
             src="/assets/images/logo-lifecrumbs.png"
             alt="Logo"
-            className="w-12 h-12 shadow-shd-logo rounded-full"
+            className="w-12 h-12 sm:w-14 sm:h-14 shadow-shd-logo rounded-full"
           />
           <span className="text-3xl font-semibold">Lifecrumbs</span>
         </div>
@@ -112,7 +112,10 @@ const SigninForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">
+          <Button
+            type="submit"
+            className="shad-button_primary hover:shadow-shd-btn mt-4"
+          >
             {isUserLoading ? (
               <div className="flex-center gap-2">
                 <Loader wdth={wdth} hgt={hgt} />

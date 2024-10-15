@@ -87,21 +87,21 @@ const SignupForm = () => {
           <img
             src="/assets/images/logo-lifecrumbs.png"
             alt="Logo"
-            className="w-12 h-12 shadow-shd-logo rounded-full"
+            className="w-12 h-12 sm:w-14 sm:h-14 shadow-shd-logo rounded-full"
           />
           <span className="text-3xl font-semibold">Lifecrumbs</span>
         </div>
 
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-8">
+        <h2 className="h3-bold md:h2-bold pt-3 sm:pt-5">
           Create a new account
         </h2>
         <p className="small-medium text-light-3 md:base-regular text-center">
-          To get started with Lifecrumbs, please enter your details
+          Get started to join, please enter your details
         </p>
 
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-5 w-full mt-4"
+          className="flex flex-col gap-3 w-full mt-4"
         >
           <FormField
             control={form.control}
@@ -155,7 +155,10 @@ const SignupForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">
+          <Button
+            type="submit"
+            className="shad-button_primary hover:shadow-shd-btn mt-4"
+          >
             {isCreatingAccount || isSigningInUser || isUserLoading ? (
               <div className="flex-center gap-2">
                 <Loader wdth={wdth} hgt={hgt} />
