@@ -3,8 +3,12 @@ import { Button } from "../ui/button";
 
 const ThemeBtn = ({
   sz,
+  className,
+  type,
 }: {
   sz?: "default" | "sm" | "lg" | "icon" | null | undefined;
+  className?: string | undefined;
+  type?: "button" | "submit" | "reset" | undefined;
 }) => {
   const [theme, setTheme] = useState("light");
 
@@ -20,7 +24,12 @@ const ThemeBtn = ({
     setTheme(theme === "dark" ? "light" : "dark");
   };
   return (
-    <Button size={sz} onClick={handleThemeSwap}>
+    <Button
+      type={type}
+      size={sz}
+      className={className}
+      onClick={handleThemeSwap}
+    >
       <img
         src={
           theme === "light"
