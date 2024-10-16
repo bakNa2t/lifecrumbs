@@ -33,8 +33,8 @@ const ThemeBtn = ({
       <img
         src={
           theme === "light"
-            ? "/assets/icons/i-sun.svg"
-            : "/assets/icons/i-moon.svg"
+            ? "/assets/icons/i-moon.svg"
+            : "/assets/icons/i-sun.svg"
         }
         alt="theme"
         width={24}
