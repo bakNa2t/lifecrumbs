@@ -108,7 +108,7 @@ const UpdateProfile = () => {
                       mediaUrl={currentUser.imageUrl}
                     />
                   </FormControl>
-                  <FormMessage className="shard-form_message" />
+                  <FormMessage className="shad-form_message italic" />
                 </FormItem>
               )}
             />
@@ -122,7 +122,7 @@ const UpdateProfile = () => {
                   <FormControl>
                     <Input type="text" className="shad-input" {...field} />
                   </FormControl>
-                  <FormMessage className="shard-form_message" />
+                  <FormMessage className="shad-form_message italic" />
                 </FormItem>
               )}
             />
@@ -141,7 +141,7 @@ const UpdateProfile = () => {
                       disabled
                     />
                   </FormControl>
-                  <FormMessage className="shard-form_message" />
+                  <FormMessage className="shad-form_message italic" />
                 </FormItem>
               )}
             />
@@ -160,7 +160,7 @@ const UpdateProfile = () => {
                       disabled
                     />
                   </FormControl>
-                  <FormMessage className="shard-form_message" />
+                  <FormMessage className="shad-form_message italic" />
                 </FormItem>
               )}
             />
@@ -177,7 +177,7 @@ const UpdateProfile = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage className="shard-form_message" />
+                  <FormMessage className="shad-form_message italic" />
                 </FormItem>
               )}
             />

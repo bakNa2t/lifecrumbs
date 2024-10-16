@@ -96,7 +96,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="shard-form_message" />
+              <FormMessage className="shad-form_message italic" />
             </FormItem>
           )}
         />
@@ -113,7 +113,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                   mediaUrl={post?.imageUrl}
                 />
               </FormControl>
-              <FormMessage className="shard-form_message" />
+              <FormMessage className="shad-form_message italic" />
             </FormItem>
           )}
         />
@@ -127,7 +127,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
               <FormControl>
                 <Input type="text" className="shad-input" {...field} />
               </FormControl>
-              <FormMessage className="shard-form_message" />
+              <FormMessage className="shad-form_message italic" />
             </FormItem>
           )}
         />
@@ -148,7 +148,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="shard-form_message" />
+              <FormMessage className="shad-form_message italic" />
             </FormItem>
           )}
         />
