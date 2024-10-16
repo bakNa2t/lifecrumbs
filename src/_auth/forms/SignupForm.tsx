@@ -112,7 +112,7 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="shad-form_message italic" />
               </FormItem>
             )}
           />
@@ -125,7 +125,7 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="shad-form_message italic" />
               </FormItem>
             )}
           />
@@ -138,7 +138,7 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="email" className="shad-input" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="shad-form_message italic" />
               </FormItem>
             )}
           />
@@ -151,7 +151,7 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="password" className="shad-input" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="shad-form_message italic" />
               </FormItem>
             )}
           />
@@ -169,7 +169,7 @@ const SignupForm = () => {
             )}
           </Button>
 
-          <p className="small-regular text-light-2 text-center mt-2">
+          <p className="small-regular text-dusk-2 dark:text-light-2 text-center mt-2">
             Already have an account?
             <Link
               to="/sign-in"
