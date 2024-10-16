@@ -95,7 +95,7 @@ const LeftSidebar = () => {
 
         <ThemeBtn
           type="button"
-          className="px-2 py-4 bg-transparent hover:bg-dark-4 hover:dark:bg-bright-4 rounded-full"
+          className="px-2 py-4 bg-transparent hover:bg-bright-4 hover:dark:bg-dark-4 rounded-full"
         />
       </div>
     </nav>

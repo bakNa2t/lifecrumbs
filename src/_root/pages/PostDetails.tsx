@@ -76,7 +76,7 @@ const PostDetails = () => {
                 />
 
                 <div className="flex flex-col">
-                  <p className="base-medium lg:body-bold text-light-1 dark:text-dusk-2">
+                  <p className="base-medium lg:body-bold text-dusk-2 dark:text-light-1">
                     {post?.creator.name}
                   </p>
                   <div className="flex-center gap-2 text-light-3">
@@ -137,7 +137,7 @@ const PostDetails = () => {
               <p>{post?.caption}</p>
               <ul className="flex gap-1 mt-2">
                 {post?.tags.map((tag: string) => (
-                  <li className="text-light-3 dark:text-dusk-2" key={tag}>
+                  <li className="text-dusk-2 dark:text-light-3" key={tag}>
                     #{tag}
                   </li>
                 ))}

@@ -51,7 +51,7 @@ const Home = () => {
       </div>
 
       <div className="home-creators">
-        <h3 className="h3-bold text-light-1 dark:text-dusk-1">
+        <h3 className="h3-bold text-dusk-1 dark:text-light-1">
           Recent Creators
         </h3>
 

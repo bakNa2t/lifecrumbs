@@ -27,8 +27,8 @@ const Bottombar = () => {
             />
             <p
               className={`${
-                isActive && "dark:text-light-2"
-              } tiny-medium text-light-2 dark:text-dusk-2`}
+                isActive ? "text-light-2" : "text-dusk-2"
+              } tiny-regular`}
             >
               {link.label}
             </p>
