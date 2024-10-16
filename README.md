@@ -47,3 +47,11 @@ The development server will be running on http://localhost:5173. You can open th
 - [Zod](https://https://zod.dev/)
 
 click here to visit => [_**Lifecrumbs**_](https://lifecrumbs-post.vercel.app/)
+
+<div align="center">
+    <p style="width: 500px;">
+        <a href="https://lifecrumbs-post.vercel.app/" target="_blank" >
+            <img alt="Lifecrumbs SPA" src ="./public/assets/images/lcrumbs-banner.png" width="500">
+        </a>
+    </p>
+</div>
