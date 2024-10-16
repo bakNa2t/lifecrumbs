@@ -215,7 +215,7 @@
 
   /* Bottom bar */
   .bottom-bar {
-    @apply z-50 flex-between w-full sticky bottom-0 rounded-t-[20px] bg-dark-2 dark:bg-bright-2 px-5 py-4 md:hidden;
+    @apply z-50 flex-between w-full sticky bottom-0 rounded-t-[20px] bg-dark-2/85 dark:bg-bright-2/85 px-5 py-4 border-t border-t-dark-1/80 dark:border-t-bright-4/80 md:hidden;
   }
 
   /* File uploader */
@@ -264,7 +264,7 @@
 
   /* Topbar */
   .topbar {
-    @apply sticky top-0 z-50 md:hidden bg-dark-2 dark:bg-bright-2 w-full;
+    @apply sticky top-0 z-50 md:hidden bg-dark-2/85 dark:bg-bright-2/85 w-full border-b border-b-dark-1/80  dark:border-b-bright-4/80;
   }
 
   /* User card */
