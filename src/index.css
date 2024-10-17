@@ -294,7 +294,7 @@
   }
 
   .shad-input {
-    @apply h-12 bg-bright-4 dark:bg-dark-4 border-none text-violet-100 placeholder:text-dusk-4 dark:placeholder:text-light-4 focus-visible:ring-2 focus-visible:ring-offset-4 ring-offset-bright-1 ring-bright-4 dark:ring-light-1 dark:ring-offset-dark-1 !important;
+    @apply h-12 bg-bright-3 dark:bg-dark-4 border-none text-violet-100 placeholder:text-dark-2 dark:placeholder:text-light-4 focus-visible:ring-2 focus-visible:ring-offset-4 ring-offset-bright-1 ring-bright-4 dark:ring-light-1 dark:ring-offset-dark-1 !important;
   }
 
   .shad-textarea {
@@ -307,7 +307,7 @@
   }
 
   .shad-button_dark_4 {
-    @apply bg-bright-4 dark:bg-dark-4 hover:bg-bright-2 dark:hover:bg-dark-2 px-5 text-dusk-1 dark:text-light-1 flex gap-2 !important;
+    @apply bg-bright-4 dark:bg-dark-4 hover:bg-bright-2 dark:hover:bg-dark-2 px-5 text-dark-1 dark:text-light-1 flex gap-2 !important;
   }
 
   .shad-button_ghost {
