@@ -298,7 +298,7 @@
   }
 
   .shad-textarea {
-    @apply h-36 bg-bright-3 dark:bg-dark-3 rounded-xl border-none focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-dusk-3 dark:ring-offset-light-3 !important;
+    @apply h-36 bg-bright-3 dark:bg-dark-3 rounded-xl border-none focus-visible:ring-2 focus-visible:ring-offset-4 ring-offset-bright-1 ring-bright-4 dark:ring-light-1 dark:ring-offset-dark-1 !important;
   }
 
   /* Button */
