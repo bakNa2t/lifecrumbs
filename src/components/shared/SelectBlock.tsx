@@ -7,8 +7,8 @@ import {
 } from "../ui/select";
 
 type SelectBlockProps = {
-  options: { value: string; label: string; path: string }[];
-  onChange: (value: string) => void;
+  options: { value: string; label: string; path?: string }[];
+  onChange: (value: "asc" | "desc") => void;
 };
 
 const SelectBlock = ({ options, onChange }: SelectBlockProps) => {
@@ -23,7 +23,7 @@ const SelectBlock = ({ options, onChange }: SelectBlockProps) => {
             key={value}
             value={value}
             className="cursor-pointer hover:bg-bright-4 hover:dark:bg-dark-4 rounded-md"
-            onClick={() => onChange(value)}
+            onClick={() => onChange(value as "asc" | "desc")}
           >
             <div className="flex gap-2">
               <p className="uppercase test-sm md:text-[12px] font-medium">

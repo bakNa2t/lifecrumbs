@@ -30,13 +30,11 @@ const Explore = () => {
     setSearchValue("");
   };
 
-  const handleSortOrderChange = (value: string) => {
-    if (value === "asc" || value === "desc") {
-      setSortOrder(value);
-    }
-  };
-
-  console.log(sortOrder);
+  // const handleSortOrderChange = (value: string) => {
+  //   if (value === "asc" || value === "desc") {
+  //     setSortOrder(value);
+  //   }
+  // };
 
   useEffect(() => {
     if (inView && !searchValue) fetchNextPage();
@@ -108,7 +106,7 @@ const Explore = () => {
               path: "/assets/icons/sort-asc.svg",
             },
           ]}
-          onChange={handleSortOrderChange}
+          onChange={(value: "desc" | "asc") => setSortOrder(value)}
         />
       </div>
 
