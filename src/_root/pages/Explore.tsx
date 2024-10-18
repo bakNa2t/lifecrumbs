@@ -17,6 +17,7 @@ import useMobileScreen from "@/hooks/useMobileScreen";
 const Explore = () => {
   const { ref, inView } = useInView();
   const [searchValue, setSearchValue] = useState("");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const { wdth, hgt } = useMobileScreen();
 
   const { data: posts, fetchNextPage, hasNextPage } = useGetPostsQuery();
@@ -28,6 +29,17 @@ const Explore = () => {
   const removeSearchValue = () => {
     setSearchValue("");
   };
+
+  // const handleSortOrderChange = (value: "asc" | "desc") => {
+  //   setSortOrder(value);
+  // };
+  const handleSortOrderChange = (value: string) => {
+    if (value === "asc" || value === "desc") {
+      setSortOrder(value);
+    }
+  };
+
+  console.log(sortOrder);
 
   useEffect(() => {
     if (inView && !searchValue) fetchNextPage();
@@ -44,7 +56,9 @@ const Explore = () => {
   const shouldDisplaySearchResults = searchValue !== "";
   const shouldDisplayPosts =
     !shouldDisplaySearchResults &&
-    posts?.pages.every((item) => item?.documents.length === 0);
+    posts?.pages.every(
+      (item) => item && item.documents && item.documents.length === 0
+    );
 
   return (
     <div className="explore-container">
@@ -87,16 +101,17 @@ const Explore = () => {
         <SelectBlock
           options={[
             {
-              value: "latest",
-              label: "Latest",
+              value: "desc",
+              label: "Newest",
               path: "/assets/icons/sort-desc.svg",
             },
             {
-              value: "earliest",
-              label: "Earliest",
+              value: "asc",
+              label: "Oldest",
               path: "/assets/icons/sort-asc.svg",
             },
           ]}
+          onChange={handleSortOrderChange}
         />
       </div>
 
@@ -111,10 +126,14 @@ const Explore = () => {
             No posts found
           </p>
         ) : (
-          posts.pages.map(
+          posts?.pages.map(
             (item, index) =>
               item && (
-                <GridPostList key={`page-${index}`} posts={item.documents} />
+                <GridPostList
+                  key={`page-${index}`}
+                  posts={item.documents ?? []}
+                  sortOrder={sortOrder}
+                />
               )
           )
         )}
