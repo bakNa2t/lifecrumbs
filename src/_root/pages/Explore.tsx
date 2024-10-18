@@ -30,9 +30,6 @@ const Explore = () => {
     setSearchValue("");
   };
 
-  // const handleSortOrderChange = (value: "asc" | "desc") => {
-  //   setSortOrder(value);
-  // };
   const handleSortOrderChange = (value: string) => {
     if (value === "asc" || value === "desc") {
       setSortOrder(value);

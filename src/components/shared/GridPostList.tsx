@@ -19,7 +19,7 @@ const GridPostList = ({
 }: GridPostListProps) => {
   const { user } = useUserContext();
 
-  const sortedPosts = posts?.sort((a: any, b: any) => {
+  const sortedPosts = posts?.sort((a, b) => {
     if (sortOrder === "asc") {
       return (
         new Date(b.$createdAt).getTime() - new Date(a.$createdAt).getTime()
