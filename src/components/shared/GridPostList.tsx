@@ -6,20 +6,34 @@ import PostStats from "./PostStats";
 
 type GridPostListProps = {
   posts: Models.Document[];
+  sortOrder?: "asc" | "desc";
   showUser?: boolean;
   showStats?: boolean;
 };
 
 const GridPostList = ({
   posts,
+  sortOrder,
   showUser = true,
   showStats = true,
 }: GridPostListProps) => {
   const { user } = useUserContext();
 
+  const sortedPosts = posts?.sort((a: any, b: any) => {
+    if (sortOrder === "asc") {
+      return (
+        new Date(b.$createdAt).getTime() - new Date(a.$createdAt).getTime()
+      );
+    } else {
+      return (
+        new Date(a.$createdAt).getTime() - new Date(b.$createdAt).getTime()
+      );
+    }
+  });
+
   return (
     <ul className="grid-container">
-      {posts.map((post) => (
+      {sortedPosts.map((post) => (
         <li key={post.$id} className="relative min-w-80 h-80">
           <Link to={`/posts/${post.$id}`} className="grid-post_link">
             <img
