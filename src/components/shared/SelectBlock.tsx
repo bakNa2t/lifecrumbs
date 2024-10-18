@@ -8,9 +8,10 @@ import {
 
 type SelectBlockProps = {
   options: { value: string; label: string; path: string }[];
+  onChange: (value: string) => void;
 };
 
-const SelectBlock = ({ options }: SelectBlockProps) => {
+const SelectBlock = ({ options, onChange }: SelectBlockProps) => {
   return (
     <Select>
       <SelectTrigger className="max-w-[135px] flex gap-1 border-bright-4 dark:border-dark-4">
@@ -22,6 +23,7 @@ const SelectBlock = ({ options }: SelectBlockProps) => {
             key={value}
             value={value}
             className="cursor-pointer hover:bg-bright-4 hover:dark:bg-dark-4 rounded-md"
+            onClick={() => onChange(value)}
           >
             <div className="flex gap-2">
               <p className="uppercase test-sm md:text-[12px] font-medium">
