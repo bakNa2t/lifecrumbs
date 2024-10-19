@@ -311,6 +311,6 @@
   }
 
   .shad-button_ghost {
-    @apply flex gap-4 items-center justify-start hover:bg-transparent hover:text-dusk-1 dark:hover:text-white !important;
+    @apply flex gap-4 items-center justify-start hover:bg-transparent hover:text-light-3 dark:hover:text-bright-4 hover:shadow-md hover:shadow-dark-4 hover:dark:shadow-light-3 !important;
   }
 }
