@@ -8,6 +8,7 @@ import { useUserContext } from "@/context/AuthContext";
 import { sidebarLinkIcons } from "@/constants";
 import { INavLink } from "@/types";
 import ThemeBtn from "./ThemeBtn";
+import FooterDesc from "./FooterDesc";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const LeftSidebar = () => {
   }, [isSuccess, navigate]);
 
   return (
-    <nav className="leftsidebar">
+    <nav className="leftsidebar relative">
       <div className="flex flex-col gap-10">
         <Link to="/" className="flex gap-3 items-center">
           <div className="flex items-center justify-center gap-3">
@@ -95,9 +96,11 @@ const LeftSidebar = () => {
 
         <ThemeBtn
           type="button"
-          className="px-2 py-4 bg-transparent hover:bg-bright-4 hover:dark:bg-dark-4 rounded-full"
+          className="p-1 w-12 h-12 duration-300 ease-linear bg-transparent hover:bg-bright-1 hover:dark:bg-dark-4 rounded-full"
         />
       </div>
+
+      <FooterDesc />
     </nav>
   );
 };
