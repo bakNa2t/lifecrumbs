@@ -51,12 +51,14 @@ const PostStats = ({ post, userId }: PostStatProps) => {
 
       toast({
         title: "You have unliked this post",
+        variant: "filled",
       });
     } else {
       newLikes.push(userId);
 
       toast({
         title: "You have liked this post",
+        variant: "filled",
       });
     }
 
@@ -71,11 +73,14 @@ const PostStats = ({ post, userId }: PostStatProps) => {
     if (savedPostRecord) {
       setIsSaved(false);
       deleteSavedPost(savedPostRecord.$id);
-      toast({ title: "Post has been removed from your Saved" });
+      toast({
+        title: "Post has been removed from your Saved",
+        variant: "filled",
+      });
     } else {
       savePost({ postId: post?.$id || "", userId });
       setIsSaved(true);
-      toast({ title: "Post has been added to your Saved" });
+      toast({ title: "Post has been added to your Saved", variant: "filled" });
     }
   };
 
