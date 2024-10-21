@@ -50,6 +50,10 @@ export default {
         "shd-logo": "0px 0px 10px 2px rgba(138,43,226, 0.5)",
         "shd-btn": "0px 0px 4px 2px rgba(138,43,226, 0.8)",
       },
+      dropShadow: {
+        light_shadow: "0 0 6px #d8bfd8",
+        dusk_shadow: "0 0 6px #2a2729",
+      },
       screens: {
         xs: "480px",
       },
