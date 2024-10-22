@@ -8,22 +8,26 @@ import {
 
 type SelectBlockProps = {
   options: { value: string; label: string; path?: string }[];
-  onChange: (value: "asc" | "desc") => void;
+  onChangeOption: (value: string) => void;
+  value: string;
 };
 
-const SelectBlock = ({ options, onChange }: SelectBlockProps) => {
+const SelectBlock = ({ options, onChangeOption }: SelectBlockProps) => {
   return (
-    <Select>
+    <Select onValueChange={(value) => onChangeOption(value)}>
       <SelectTrigger className="max-w-[135px] flex gap-1 border-bright-4 dark:border-dark-4">
-        <SelectValue placeholder="Sort by date" />
+        <SelectValue placeholder="First newest" />
       </SelectTrigger>
-      <SelectContent className="bg-bright-3 dark:bg-dark-3">
+      <SelectContent
+        className="bg-bright-3 dark:bg-dark-3"
+        // onChange={() => onChangeOption(value as "asc" | "desc")}
+      >
         {options.map(({ value, label, path }) => (
           <SelectItem
             key={value}
             value={value}
             className="cursor-pointer hover:bg-bright-4 hover:dark:bg-dark-4 rounded-md"
-            onClick={() => onChange(value as "asc" | "desc")}
+            // onClick={() => onChange(value as "asc" | "desc")}
           >
             <div className="flex gap-2">
               <p className="uppercase test-sm md:text-[12px] font-medium">
