@@ -38,30 +38,28 @@ const Explore = () => {
     if (inView && !searchValue) fetchNextPage();
   }, [inView, searchValue]);
 
-  useEffect(() => {
-    if (posts) {
-      const sortedPages = posts.pages.map((page) => {
-        return {
-          ...page,
-          documents: page.documents.sort((a: Document, b: Document) => {
-            if (sortOrder === "asc") {
-              return (
-                new Date(a.$createdAt).getTime() -
-                new Date(b.$createdAt).getTime()
-              );
-            } else {
-              return (
-                new Date(b.$createdAt).getTime() -
-                new Date(a.$createdAt).getTime()
-              );
-            }
-          }),
-        };
-      });
+  if (posts) {
+    const sortedPages = posts.pages.map((page) => {
+      return {
+        ...page,
+        documents: page.documents.sort((a: Document, b: Document) => {
+          if (sortOrder === "desc") {
+            return (
+              new Date(a.$createdAt).getTime() -
+              new Date(b.$createdAt).getTime()
+            );
+          } else {
+            return (
+              new Date(b.$createdAt).getTime() -
+              new Date(a.$createdAt).getTime()
+            );
+          }
+        }),
+      };
+    });
 
-      posts.pages = sortedPages;
-    }
-  }, [sortOrder, posts]);
+    posts.pages = sortedPages;
+  }
 
   const handleSortOrderChange = (value: string) => {
     if (value === "asc" || value === "desc") {
