@@ -30,15 +30,40 @@ const Explore = () => {
     setSearchValue("");
   };
 
-  // const handleSortOrderChange = (value: string) => {
-  //   if (value === "asc" || value === "desc") {
-  //     setSortOrder(value);
-  //   }
-  // };
-
   useEffect(() => {
     if (inView && !searchValue) fetchNextPage();
   }, [inView, searchValue]);
+
+  useEffect(() => {
+    if (posts) {
+      const sortedPages = posts.pages.map((page) => {
+        return {
+          ...page,
+          documents: page.documents.sort((a, b) => {
+            if (sortOrder === "asc") {
+              return (
+                new Date(a.$createdAt).getTime() -
+                new Date(b.$createdAt).getTime()
+              );
+            } else {
+              return (
+                new Date(b.$createdAt).getTime() -
+                new Date(a.$createdAt).getTime()
+              );
+            }
+          }),
+        };
+      });
+
+      posts.pages = sortedPages;
+    }
+  }, [sortOrder, posts]);
+
+  const handleSortOrderChange = (value: string) => {
+    if (value === "asc" || value === "desc") {
+      setSortOrder(value);
+    }
+  };
 
   if (!posts) {
     return (
@@ -96,17 +121,18 @@ const Explore = () => {
         <SelectBlock
           options={[
             {
-              value: "desc",
-              label: "Newest",
-              path: "/assets/icons/sort-desc.svg",
-            },
-            {
               value: "asc",
-              label: "Oldest",
+              label: "Newest",
               path: "/assets/icons/sort-asc.svg",
             },
+            {
+              value: "desc",
+              label: "Oldest",
+              path: "/assets/icons/sort-desc.svg",
+            },
           ]}
-          onChange={(value: "desc" | "asc") => setSortOrder(value)}
+          value={sortOrder}
+          onChangeOption={handleSortOrderChange}
         />
       </div>
 
@@ -127,7 +153,7 @@ const Explore = () => {
                 <GridPostList
                   key={`page-${index}`}
                   posts={item.documents ?? []}
-                  sortOrder={sortOrder}
+                  // sortOrder={sortOrder}
                 />
               )
           )
