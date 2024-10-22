@@ -14,6 +14,10 @@ import {
 import useDebounce from "@/hooks/useDebounce";
 import useMobileScreen from "@/hooks/useMobileScreen";
 
+interface Document {
+  $createdAt: string;
+}
+
 const Explore = () => {
   const { ref, inView } = useInView();
   const [searchValue, setSearchValue] = useState("");
@@ -39,7 +43,7 @@ const Explore = () => {
       const sortedPages = posts.pages.map((page) => {
         return {
           ...page,
-          documents: page.documents.sort((a, b) => {
+          documents: page.documents.sort((a: Document, b: Document) => {
             if (sortOrder === "asc") {
               return (
                 new Date(a.$createdAt).getTime() -
