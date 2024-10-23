@@ -3,7 +3,7 @@ import { Models } from "appwrite";
 
 import PostStats from "./PostStats";
 
-import { formatDate } from "@/lib/utils";
+import { convertFormatDate } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
 
 type PostCardProps = {
@@ -35,7 +35,7 @@ const PostCard = ({ post }: PostCardProps) => {
             </p>
             <div className="flex-center gap-2 text-light-3">
               <p className="subtle-semibold lg:small-regular">
-                {formatDate(post.$createdAt)}
+                {convertFormatDate(post.$createdAt)}
               </p>
               •
               <p className="flex gap-1 subtle-semibold lg:small-regular">

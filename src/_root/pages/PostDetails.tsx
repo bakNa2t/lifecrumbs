@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import Loader from "@/components/shared/Loader";
@@ -5,7 +6,7 @@ import PostStats from "@/components/shared/PostStats";
 import ConfirmDelete from "@/components/shared/ConfirmDelete";
 import { Button } from "@/components/ui/button";
 
-import { formatDate } from "@/lib/utils";
+import { convertFormatDate } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
 import {
   useDeletePostMutation,
@@ -15,7 +16,6 @@ import {
 import GridPostList from "@/components/shared/GridPostList";
 import useMobileScreen from "@/hooks/useMobileScreen";
 import useMoveBack from "@/hooks/useMoveBack";
-import { useState } from "react";
 
 const PostDetails = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -93,7 +93,7 @@ const PostDetails = () => {
                   </p>
                   <div className="flex-center gap-2 text-light-3">
                     <p className="subtle-semibold lg:small-regular">
-                      {formatDate(post?.$createdAt ?? "")}
+                      {convertFormatDate(post?.$createdAt ?? "")}
                     </p>
                     •
                     <p className="flex gap-1 subtle-semibold lg:small-regular">
