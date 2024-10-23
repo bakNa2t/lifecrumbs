@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 import Loader from "@/components/shared/Loader";
 import PostStats from "@/components/shared/PostStats";
+import ConfirmDelete from "@/components/shared/ConfirmDelete";
 import { Button } from "@/components/ui/button";
 
 import { formatDate } from "@/lib/utils";
@@ -14,8 +15,10 @@ import {
 import GridPostList from "@/components/shared/GridPostList";
 import useMobileScreen from "@/hooks/useMobileScreen";
 import useMoveBack from "@/hooks/useMoveBack";
+import { useState } from "react";
 
 const PostDetails = () => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const navigate = useNavigate();
   const toBack = useMoveBack();
   const { id } = useParams();
@@ -32,11 +35,20 @@ const PostDetails = () => {
     (userPost) => userPost.$id !== id
   );
 
+  const handleDisplayConfirmDelete = () => {
+    setShowDeleteModal(true);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteModal(false);
+  };
+
   const handleDeletePost = () => {
     deletePost({
       postId: id ?? "",
       imageId: post?.imageId,
     });
+    setShowDeleteModal(false);
 
     return navigate(-1);
   };
@@ -57,7 +69,7 @@ const PostDetails = () => {
       {isPending ? (
         <Loader wdth={wdth} hgt={hgt} />
       ) : (
-        <div className="post_details-card">
+        <div className="post_details-card relative">
           <img src={post?.imageUrl} alt="post" className="post_details-img" />
 
           <div className="post_details-info">
@@ -119,7 +131,7 @@ const PostDetails = () => {
                   className={`p-0 ${
                     user.id !== post?.creator.$id && "hidden"
                   } hover:transform hover:scale-105`}
-                  onClick={handleDeletePost}
+                  onClick={handleDisplayConfirmDelete}
                 >
                   <img
                     src="/assets/icons/delete-post.svg"
@@ -130,6 +142,13 @@ const PostDetails = () => {
                 </Button>
               </div>
             </div>
+
+            {showDeleteModal && (
+              <ConfirmDelete
+                handleCancelDelete={handleCancelDelete}
+                handleDeletePost={handleDeletePost}
+              />
+            )}
 
             <hr className="border w-full border-dark-4/80" />
 
