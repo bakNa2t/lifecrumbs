@@ -43,6 +43,10 @@ const PostDetails = () => {
     setShowDeleteModal(false);
   };
 
+  const handleCloseConfirmDeleteOutside = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) setShowDeleteModal(false);
+  };
+
   const handleDeletePost = () => {
     deletePost({
       postId: id ?? "",
@@ -145,8 +149,11 @@ const PostDetails = () => {
 
             {showDeleteModal && (
               <ConfirmDelete
-                handleCancelDelete={handleCancelDelete}
                 handleDeletePost={handleDeletePost}
+                handleCancelDelete={handleCancelDelete}
+                handleCloseConfirmDeleteOutside={
+                  handleCloseConfirmDeleteOutside
+                }
               />
             )}
 

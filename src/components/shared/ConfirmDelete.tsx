@@ -3,14 +3,19 @@ import { Button } from "../ui/button";
 type ConfirmDeleteProps = {
   handleCancelDelete: () => void;
   handleDeletePost: () => void;
+  handleCloseConfirmDeleteOutside: (e: React.MouseEvent) => void;
 };
 
 const ConfirmDelete = ({
   handleCancelDelete,
   handleDeletePost,
+  handleCloseConfirmDeleteOutside,
 }: ConfirmDeleteProps) => {
   return (
-    <div className="fixed backdrop-filter backdrop-blur-sm inset-0 bg-bright-4 dark:bg-dark-1 bg-opacity-60 dark:bg-opacity-60 transition-opacity flex flex-col items-center justify-center z-[100]">
+    <div
+      className="fixed backdrop-filter backdrop-blur-sm inset-0 bg-bright-4 dark:bg-dark-1 bg-opacity-60 dark:bg-opacity-60 transition-opacity flex flex-col items-center justify-center z-[100]"
+      onClick={handleCloseConfirmDeleteOutside}
+    >
       <div className="inline-block align-bottom bg-bright-4 dark:bg-dark-4 rounded-lg text-left overflow-hidden shadow-lg shadow-bright-4/60 dark:shadow-primary-500/60 sm:shadow-xl sm:shadow-bright-4/60 dark:sm:shadow-primary-500/60 transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
         <div className="bg-bright-2 dark:bg-dark-2 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div className="sm:flex sm:items-start">
