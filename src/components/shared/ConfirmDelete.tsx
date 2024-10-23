@@ -16,7 +16,7 @@ const ConfirmDelete = ({
           <div className="sm:flex sm:items-start">
             <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
               <svg
-                className="h-6 w-6 text-red-600"
+                className="h-8 w-8 sm:w-10 sm:h-10 text-red"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"

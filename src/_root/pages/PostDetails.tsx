@@ -111,7 +111,7 @@ const PostDetails = () => {
                 </div>
               </Link>
 
-              <div className="flex-center gap-3">
+              <div className="flex-center gap-1 sm:gap-3 duration-300 ease-linear">
                 <Link
                   to={`/update-post/${post?.$id}`}
                   className={`${

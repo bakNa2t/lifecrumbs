@@ -185,7 +185,7 @@
 
   /* Post Details */
   .post_details-container {
-    @apply flex flex-col flex-1 gap-10 overflow-y-scroll py-10 px-5 md:p-14 custom-scrollbar-lt dark:custom-scrollbar items-center;
+    @apply flex flex-col flex-1 gap-10 overflow-y-scroll py-6 px-5 sm:py-10 md:p-14 custom-scrollbar-lt dark:custom-scrollbar items-center;
   }
 
   .post_details-card {
@@ -197,7 +197,7 @@
   }
 
   .post_details-info {
-    @apply bg-bright-2 dark:bg-dark-2 flex flex-col gap-5 lg:gap-7 flex-1 items-start p-8 rounded-[30px];
+    @apply bg-bright-2 dark:bg-dark-2 flex flex-col gap-5 lg:gap-7 flex-1 items-start p-4 sm:p-8 rounded-[30px];
   }
 
   .post_details-delete_btn {
